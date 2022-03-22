@@ -1,66 +1,62 @@
 // Este es el punto de entrada de tu aplicacion
-import { firebaseBefit } from './lib/firebase.js';
+import { firebaseBefit, register } from './lib/firebase.js';
 
-firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    const displayName = user.displayName;
-    console.log(displayName);
-    const email = user.email;
-    console.log(email);
-    const emailVerified = user.emailVerified;
-    console.log(emailVerified);
-    const photoURL = user.photoURL;
-    console.log(photoURL);
-    const isAnonymous = user.isAnonymous;
-    console.log(isAnonymous);
-    const uid = user.uid;
-    console.log(uid);
-    const providerData = user.providerData;
-    console.log(providerData);
-    const vr = 'logueado';
-    document.getElementById('login').innerHTML = vr + user.email;
-    console.log(user);
-  } else {
-    document.getElementById('login').innerHTML = 'No Logueado ';
-  }
-});
 // const app = initializeApp(firebaseConfig);
 // console.log(app.name);
 // const analytics = getAnalytics(app);
 // console.log(analytics);
 const containerSignUp = document.querySelector('.container');
 containerSignUp.innerHTML = '';
-const indexHtlm = `
-<div>
+const signUpHtlm = `
+<div class="signUp">
   <h1>Sign up</h1>
   <input class="email" type="email" placeholder="Enter your email"/>
   <input class="password" type="password" placeholder="Enter your password" />
-  <button id="btnRegister">SignUp</button>
-  <p class="messageError"></p>
+  <button id="btnRegister">Sign Up</button>
+  <p class="messageSignUp"></p>
+</div>
+<div class="login">
+  <h1>Log In</h1>
+  <input class="emailLogIn" type="email" placeholder="Enter your email"/>
+  <input class="passwordLogIn" type="password" placeholder="Enter your password" />
+  <button id="btnLogIn">Log In</button>
+  <p class="messageLogIn"></p>
   <h1 id="login"></h1>
 </div>`;
-containerSignUp.innerHTML = indexHtlm;
+containerSignUp.innerHTML = signUpHtlm;
 document.getElementById('btnRegister').addEventListener('click', () => {
-  const messageError = document.querySelector('.messageError');
+  const messageSignUp = document.querySelector('.messageSignUp');
   const email = document.querySelector('.email').value;
   const password = document.querySelector('.password').value;
-  firebase.auth().createUserWithEmailAndPassword(email, password)
+  // const r1 = register(email, password);
+  // messageSignUp.innerHTML = errorMessage;
+  // firebase.auth().createUserWithEmailAndPassword(email, password)
+  register(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      const palabra = 'Tu cuenta a sido creado con éxito, con el email: ';
-      const palabra2 = ' y la contraseña: ';
-      messageError.innerHTML = palabra + email + palabra2 + password + user;
+      const messageRegister = 'Tu cuenta a sido creado con éxito, con el email: ';
+      // const palabra2 = ' y la contraseña: ';
+      messageSignUp.innerHTML = messageRegister + email;
       console.log(user);
-    //   // if (validateEmail(email) === true || validatePassword(password) === true) {
-    //   //   messageError.innerHTML = 'Successful registration';
-    //   // }
-    // // ...
     })
     .catch((error) => {
       const errorCode = error.code;
       console.log(errorCode);
       const errorMessage = error.message;
-      messageError.innerHTML = errorMessage;
+      messageSignUp.innerHTML = errorMessage;
+      // alert(errorMessage);
+    });
+});
+document.getElementById('btnLogIn').addEventListener('click', () => {
+  const messageLogIn = document.querySelector('.messageLogIn');
+  const emailLogIn = document.querySelector('.emailLogIn').value;
+  const passwordLogIn = document.querySelector('.passwordLogIn').value;
+  firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn)
+    .catch((error) => {
+      const errorCode = error.code;
+      console.log(errorCode);
+      const errorMessage = error.message;
+      messageLogIn.innerHTML = errorMessage;
       // alert(errorMessage);
     });
 });
