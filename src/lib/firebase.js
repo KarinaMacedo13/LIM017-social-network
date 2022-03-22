@@ -9,3 +9,47 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 export const firebaseBefit = firebase.initializeApp(firebaseConfig);
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    const displayName = user.displayName;
+    console.log(displayName);
+    const email = user.email;
+    console.log(email);
+    const emailVerified = user.emailVerified;
+    console.log(emailVerified);
+    const photoURL = user.photoURL;
+    console.log(photoURL);
+    const isAnonymous = user.isAnonymous;
+    console.log(isAnonymous);
+    const uid = user.uid;
+    console.log(uid);
+    const providerData = user.providerData;
+    console.log(providerData);
+    const vr = 'logueado';
+    document.getElementById('login').innerHTML = vr + user.email;
+    console.log(user);
+  } else {
+    document.getElementById('login').innerHTML = 'No Logueado ';
+  }
+});
+
+export const register = (email, password) => {
+  const registerBefit = firebase.auth().createUserWithEmailAndPassword(email, password);
+  // .then((userCredential) => {
+  //   const user = userCredential.user;
+  //   // const palabra = 'Tu cuenta a sido creado con éxito, con el email: ';
+  //   // const palabra2 = ' y la contraseña: ';
+  //   // messageSignUp.innerHTML = palabra + email + palabra2 + password + user;
+  //   console.log(user);
+  // })
+  // .catch((error) => {
+  //   const errorCode = error.code;
+  //   console.log(errorCode);
+  //   const errorMessage = error.message;
+  //   console.log(errorMessage);
+  //   return errorMessage;
+  // });
+  console.log(registerBefit);
+  return registerBefit;
+};
