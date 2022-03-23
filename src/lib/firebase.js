@@ -17,7 +17,12 @@ firebase.auth().onAuthStateChanged((user) => {
     const email = user.email;
     console.log(email);
     const emailVerified = user.emailVerified;
-    console.log(emailVerified);
+    let textoVerificado = '';
+    if (emailVerified === false) {
+      textoVerificado = ' Email no verificado';
+    } else {
+      textoVerificado = ' Email verificado';
+    }
     const photoURL = user.photoURL;
     console.log(photoURL);
     const isAnonymous = user.isAnonymous;
@@ -27,7 +32,7 @@ firebase.auth().onAuthStateChanged((user) => {
     const providerData = user.providerData;
     console.log(providerData);
     const vr = 'logueado';
-    document.getElementById('login').innerHTML = vr + user.email;
+    document.getElementById('login').innerHTML = vr + user.email + textoVerificado;
     console.log(user);
   } else {
     document.getElementById('login').innerHTML = 'No Logueado ';
@@ -52,4 +57,16 @@ export const register = (email, password) => {
   // });
   console.log(registerBefit);
   return registerBefit;
+};
+
+export const verificar = () => {
+  const user = firebase.auth().currentUser;
+  user.sendEmailVerification()
+    .then((result) => {
+      console.log(result);
+    // Email sent.
+    }).catch((error) => {
+      console.log(error);
+    // An error happened.
+    });
 };
