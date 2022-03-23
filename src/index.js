@@ -51,15 +51,15 @@ const containerHtlm = `
   <button class="btnGoogle" id="btnSignUpGoogle2"> <span class="fa-brands fa-google"> </span> Log In with Google</button>
   <p class="messageLogIn"></p>
   <p class="message"> Already have an account?</p>
-  <button class="btnSig" id="btnSig"> Sign Up</button>
+  <button class="btnSig" id="btnSig"> Sign Up here.</button>
   <h3 id="login"></h3>
   <button class="btnSignupLogin" id="btnLogOut">Cerrar sesión</button>
 </div>
 </div>`;
-const messageSignUp = document.querySelector('.messageSignUp');
+//const messageSignUp = document.querySelector('.messageSignUp');
 container.innerHTML = containerHtlm;
 document.getElementById('btnRegister').addEventListener('click', () => {
-  // const messageSignUp = document.querySelector('.messageSignUp');
+  const messageSignUp = document.querySelector('.messageSignUp');
   const email = document.querySelector('#emailSignUp').value;
   const password = document.querySelector('#passwordSignUp').value;
   messageSignUp.style.display = 'block';
@@ -69,7 +69,7 @@ document.getElementById('btnRegister').addEventListener('click', () => {
   register(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      const messageRegister = 'Tu cuenta a sido creado con éxito, con el email: ';
+      const messageRegister = 'Your account has been successfully created, e-mail: ';
       // const palabra2 = ' y la contraseña: ';
       messageSignUp.innerHTML = messageRegister + email;
       console.log(messageSignUp);
