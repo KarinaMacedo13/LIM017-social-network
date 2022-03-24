@@ -97,9 +97,9 @@
   font-size: 0.8em;
 }
 
-.signUp {
+/* .signUp {
   display: none;
-}
+} */
 .signUpContent{
   display: grid;
   gap: 2%;

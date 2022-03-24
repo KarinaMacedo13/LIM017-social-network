@@ -1,8 +1,19 @@
 // eslint-disable-next-line import/no-cycle
 // import { onNavigate } from '../main.js';
-
 export const register = () => {
-  const htmlRegister = `<div class="containerSignUpLogIn">
+  const htmlRegister = `
+  <div class="container">
+    <div class="tabs">
+      <div class="info">
+        <img class="logoTab" src="./img/logo.png">
+        <p class="lema"> A place where you find people like you. </p>
+      </div>
+      <div class="tabsLogSign">
+        <p class="tabsMessage"> Log In </p>
+        <p class="tabsMessage"> Sign Up </p>
+      </div>
+    </div>
+    <div class="containerSignUpLogIn">
       <div class="signUp">
         <div class="signUpContent">
           <h1>Sign up</h1>
@@ -21,7 +32,7 @@ export const register = () => {
           <button class="btnSig" id="btnUp"> Log In </button>
         </div>
       </div>
-    </div>`;
+    </div>
+  </div>`;
   return htmlRegister;
 };
-document.querySelector('#root');
