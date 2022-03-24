@@ -1,29 +1,27 @@
-// aqui exportaras las funciones que necesites
+/* eslint-disable import/no-cycle */
+import { home } from './templates/home.js';
+import { register } from './templates/register.js';
+import { login } from './templates/login.js';
+import { homeDOM } from './controlersDOM/homeDOM.js';
+import { registerDOM } from './controlersDOM/registerDOM.js';
+import { loginDOM } from './controlersDOM/loginDOM.js';
 
-export const myFunction = () => {
-  // aqui tu codigo
-  console.log('Hola mundo!');
-};
-export const validateEmail = (email) => {
-  const expression = /^[^@]+@\w+(\.\w+)+\w$/;
-  if (expression.test(email) === true) {
-    return true;
-  }
-  return false;
-};
-export const validatePassword = (password) => {
-  if (password < 8) {
-    return false;
-  }
-  return true;
+const routes = {
+  '/': home,
+  '/register': register,
+  '/login': login,
 };
 
-export const validateField = (field) => {
-  if (field == null) {
-    return false;
-  }
-  if (field.lenght === 0) {
-    return false;
-  }
-  return true;
+const rootDiv = document.getElementById('root');
+
+const component = routes[window.location.pathname];
+console.log(component);
+
+rootDiv.innerHTML = component;
+export const onNavigate = (pathname) => {
+  window.history.pushState(
+    {},
+    pathname,
+    window.location.origin + pathname,
+  );
 };
