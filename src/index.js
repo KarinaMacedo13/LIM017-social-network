@@ -1,6 +1,10 @@
 // Este es el punto de entrada de tu aplicacion
 // import { firebaseBefit, register, verificar } from './lib/firebase.js';
 
+// console.log(firebaseBefit);
+// console.log(register);
+// console.log(verificar);
+
 // const app = initializeApp(firebaseConfig);
 // console.log(app.name);
 // const analytics = getAnalytics(app);
@@ -11,7 +15,6 @@
 // container.innerHTML = '';
 // const containerHtlm = `
 // <img class="logo" src="./img/logo.png">
-
 // <div class="tabs">
 //   <div class="info">
 //     <img class="logoTab" src="./img/logo.png">
