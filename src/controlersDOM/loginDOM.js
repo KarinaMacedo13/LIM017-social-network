@@ -1,8 +1,11 @@
-import { login } from '../templates/login.js';
-import { onNavigate } from '../main.js';
+/* eslint-disable import/no-cycle */
+/* eslint-disable import/named */
+// import { onNavigate } from '../main.js';
 
-export const loginDOM = () => {
-  const btnLogin = document.getElementById('btnLogIn');
-  btnLogin.addEventListener('click', () => onNavigate('/'));
-  console.log(login);
-};
+// export const loginDOM = () => {
+//   const btnSign = document.getElementById('btnSign');
+//   btnSign.addEventListener('click', () => {
+//     onNavigate('/home');
+//     // homepage();
+//   });
+// };
