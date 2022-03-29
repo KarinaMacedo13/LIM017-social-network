@@ -1,0 +1,84 @@
+.home {
+    height: 100vh;
+    margin: 0px;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 10% 90%;
+    grid-template-areas: "navWall" "wall";
+    background-color: #F1EFEF;
+}
+
+.navWall{
+    grid-area: navWall;
+    background-color: #5f00ff;
+}
+
+.logoWall{
+    position: relative;
+    width: 0%;
+}
+
+.containerWall{
+    grid-area: wall;
+    display: flex;
+    justify-content: center;
+}
+
+.containerPost {
+    display: grid;
+    gap: 4%;
+    background: white;
+    border-radius: 20px;
+    font-family: "Telex", sans-serif;
+    padding: 3%;
+    box-shadow: 1px 1px 1px grey;
+    position: relative;
+    width: 80%;
+    height: 40%;
+    top: 20px;
+}
+
+.tillePost{
+    font-family: "Telex", sans-serif;
+    font-size: 150%;
+    color: #4bc3fe;
+}
+
+.postWrite{
+    text-decoration: none;
+}
+
+.btnShare {
+    background: #ffb624;
+    color: #ffffff;
+    width: 20%;
+    height: 140%;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 1px 1px 1px grey;
+}
+
+@media only screen and (min-width: 769px){
+    .home {
+        height: 100vh;
+        margin: 0px;
+        display: grid;
+        grid-template-columns: 20% 80%;
+        grid-template-rows: auto;
+        grid-template-areas: "navWall wall";
+        background-color: #F1EFEF;
+    }
+    .navWall{
+        grid-area: navWall;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(180deg, #5f00ff 0%, #4cb7eb 100%);
+        border-radius: 0px 20px 20px 0px;
+    }
+    .logoWall{
+        width: 80%;
+    }
+}
