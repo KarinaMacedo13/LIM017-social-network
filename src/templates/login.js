@@ -7,10 +7,6 @@ export const login = () => {
           <img class="logoTab" src="./img/logo.png">
           <p class="lema"> A place where you find people like you. </p>
         </div>
-        <div class="tabsLogSign">
-          <p class="tabsMessage"> Log In </p>
-          <p class="tabsMessage"> Sign Up </p>
-        </div>
       </div>
     <div class="containerSignUpLogIn">
       <div class="logIn">

@@ -42,10 +42,9 @@ export const firebaseBefit = firebase.initializeApp(firebaseConfig);
 //     document.getElementById('login').innerHTML = 'No Logueado ';
 //   }
 // });
-const messageSignUp = document.querySelector('.messageSignUp');
-const messageLogIn = document.querySelector('.messageLogIn');
 
 export const registerFirebase = (email, password) => {
+  const messageSignUp = document.querySelector('.messageSignUp');
   register();
   const registerBefit = firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
@@ -70,15 +69,26 @@ export const registerFirebase = (email, password) => {
 };
 
 export const registerGoogle = () => {
+  const messageSignUp = document.querySelector('.messageSignUp');
   register();
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth()
     .signInWithPopup(provider)
-    .then((result) => { messageSignUp.innerHTML = result; })
-    .catch((error) => { messageSignUp.innerHTML = error; });
+    .then((result) => {
+      messageSignUp.innerHTML = result;
+      registerToHome();
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      console.log(errorCode);
+      const errorMessage = error.message;
+      console.log(errorMessage);
+      messageSignUp.innerHTML = error;
+    });
 };
 
 export const loginFirebase = (emailLogIn, passwordLogIn) => {
+  const messageLogIn = document.querySelector('.messageLogIn');
   login();
   firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn)
     .then((userCredential) => {

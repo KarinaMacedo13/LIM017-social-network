@@ -33,18 +33,6 @@
   width: 0%;
   height: 0%;
 }
-.tabsLogSign{
-  grid-area: tab;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-.tabsMessage{
-  font-size: 1em;
-  font-family: "Telex", sans-serif;
-  color: white;
-  transform: rotate(-270deg);
-}
 
 /* Contenedor de LogIn y SignUp */
 .containerSignUpLogIn {

@@ -3,9 +3,6 @@ import { home } from './templates/home.js';
 import { register } from './templates/register.js';
 import { registerFirebase, registerGoogle, loginFirebase } from './lib/firebase.js';
 import { login } from './templates/login.js';
-// import { homeDOM } from './controlersDOM/homeDOM.js';
-// import { registerDOM } from './controlersDOM/registerDOM.js';
-// import { loginDOM } from './controlersDOM/loginDOM.js';
 
 const rootDiv = document.getElementById('root');
 const routes = {
@@ -18,7 +15,6 @@ function loadPage() {
   rootDiv.innerHTML = routes[component]();
 }
 const onNavigate = (pathname) => {
-  console.log('entro', pathname);
   window.history.pushState(
     {},
     pathname,
@@ -35,10 +31,12 @@ export function registerToHome() {
 }
 
 function showRegister() {
-  // Login -> home
+  // btn LogIn, from Register to Log in
   const btnUp = document.getElementById('btnUp');
   btnUp.addEventListener('click', () => {
     onNavigate('/');
+    // eslint-disable-next-line no-use-before-define
+    showLogin();
   });
   // SignUp button -> LogIn
   const btnRegister = document.getElementById('btnRegister');
@@ -51,6 +49,7 @@ function showRegister() {
   const btnSignUpGoogle = document.getElementById('btnSignUpGoogle');
   btnSignUpGoogle.addEventListener('click', () => {
     registerGoogle();
+    onNavigate('/');
   });
   // document.querySelector('btnSignUpGoogle').addEventListener('click', () => {
   //   registerGoogle();
@@ -61,6 +60,7 @@ function showLogin() {
   // SignHere -> register
   const btnSign = document.getElementById('btnSign');
   btnSign.addEventListener('click', () => {
+    console.log('Hola');
     onNavigate('/register');
     showRegister();
   });
