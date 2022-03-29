@@ -1,5 +1,10 @@
-export const home = () => `
-  <div class="containerSignUpLogIn">WELCOME TO OUR SOCIAL MEDIA, WE ARE BEFIT!
+export const home = () => {
+  const postWrite = `
+  <div class="containerPost">
+  <p>Create Post</p>
+  <input type="text" id="textPost">
+  <button class="btnShare" id="btnShare"> Share </button>
   </div>
-  <button class="btnSignupLogin" id="btnLogOut">Log out</button>
   `;
+  return postWrite;
+};

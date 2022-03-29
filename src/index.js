@@ -61,7 +61,7 @@
 //   <button class="btnSignupLogin" id="btnLogOut">Cerrar sesión</button>
 // </div>
 // </div>`;
-// //const messageSignUp = document.querySelector('.messageSignUp');
+// const messageSignUp = document.querySelector('.messageSignUp');
 // container.innerHTML = containerHtlm;
 // document.getElementById('btnRegister').addEventListener('click', () => {
 //   const messageSignUp = document.querySelector('.messageSignUp');

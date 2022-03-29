@@ -1,6 +1,7 @@
 /* eslint-disable import/no-cycle */
 import { home } from './templates/home.js';
 import { register } from './templates/register.js';
+import { registerFirebase, registerGoogle, loginFirebase } from './lib/firebase.js';
 import { login } from './templates/login.js';
 // import { homeDOM } from './controlersDOM/homeDOM.js';
 // import { registerDOM } from './controlersDOM/registerDOM.js';
@@ -29,6 +30,10 @@ const onNavigate = (pathname) => {
 //   rootDiv.innerHTML = routes[window.location.pathname];
 // };
 onNavigate('/');
+export function registerToHome() {
+  onNavigate('/home');
+}
+
 function showRegister() {
   // Login -> home
   const btnUp = document.getElementById('btnUp');
@@ -38,8 +43,18 @@ function showRegister() {
   // SignUp button -> LogIn
   const btnRegister = document.getElementById('btnRegister');
   btnRegister.addEventListener('click', () => {
-    onNavigate('/home');
+    const email = document.querySelector('#emailSignUp').value;
+    const password = document.querySelector('#passwordSignUp').value;
+    registerFirebase(email, password);
   });
+  // Button Google
+  const btnSignUpGoogle = document.getElementById('btnSignUpGoogle');
+  btnSignUpGoogle.addEventListener('click', () => {
+    registerGoogle();
+  });
+  // document.querySelector('btnSignUpGoogle').addEventListener('click', () => {
+  //   registerGoogle();
+  // });
 }
 
 function showLogin() {
@@ -52,7 +67,10 @@ function showLogin() {
   // Login button -> home
   const btnLogIn = document.getElementById('btnLogIn');
   btnLogIn.addEventListener('click', () => {
-    onNavigate('/home');
+    const emailLogIn = document.querySelector('#emailLogIn').value;
+    const passwordLogIn = document.querySelector('#passwordLogIn').value;
+    loginFirebase(emailLogIn, passwordLogIn);
+    // onNavigate('/home');
     showRegister();
   });
 }

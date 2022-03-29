@@ -151,13 +151,13 @@
 }
 
 .messageSignUp{
-  display: none;
+  /* display: none; */
   margin-top: 5%;
   font-size: 0.8em;
 }
 
 .messageLogIn{
-  display: none;
+  /* display: none; */
   margin-top: 5%;
   font-size: 0.8em;
 }
