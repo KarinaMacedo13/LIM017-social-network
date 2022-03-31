@@ -38,9 +38,11 @@
 /* Contenedor de LogIn y SignUp */
 .containerSignUpLogIn {
   grid-area: space;
+  /* position: relative; */
+  /* margin: 0 auto; */
   width: 100%;
   height: 100%;
-  padding: 8%;
+  padding: 5%;
   background: #ffffff;
   border-radius: 40px 0px 0px 0px;
   /* z-index: 2; */
@@ -50,10 +52,15 @@
 }
 .logIn-container {
   display: grid;
-  gap: 8%;
+  gap: 2%;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+  /* justify-content: center; */
   font-family: "Telex", sans-serif;
-  margin-top: 20%;
+  /* margin-top: 20%; */
   margin-left:5%;
+  margin-top: 10%;
 }
 
 .logIn-container h1 {
@@ -85,6 +92,7 @@
 .labels{
   color: #C4C4C4;
   cursor: pointer;
+  /* margin: 2%; */
 }
 
 .labelOr{
@@ -158,6 +166,7 @@
   /* display: none; */
   margin-top: 5%;
   font-size: 0.8em;
+  color: rgb(255, 0, 0);
 }
 
 /*@media only screen and (min-width: 600px){
@@ -202,7 +211,6 @@
   }
 
   .logIn-container {
-    gap: 6%;
     margin-top: 10%;
   }
 }

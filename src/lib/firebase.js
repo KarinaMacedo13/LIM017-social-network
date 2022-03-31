@@ -106,7 +106,37 @@ export const loginFirebase = (emailLogIn, passwordLogIn) => {
       messageLogIn.innerHTML = errorMessage2;
       // alert(errorMessage);
     });
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      const displayName = user.displayName;
+      console.log(displayName);
+      const email = user.email;
+      console.log(email);
+      const emailVerified = user.emailVerified;
+      // let textoVerificado = '';
+      // if (emailVerified === false) {
+      //   textoVerificado = ' Email no verificado';
+      // } else {
+      //   textoVerificado = ' Email verificado';
+      // }
+      const photoURL = user.photoURL;
+      console.log(photoURL);
+      const isAnonymous = user.isAnonymous;
+      console.log(isAnonymous);
+      const uid = user.uid;
+      console.log(uid);
+      const providerData = user.providerData;
+      console.log(providerData);
+      const vr = 'logueado: ';
+      document.getElementById('loginHome').innerHTML = vr + user.email;
+      console.log(vr + user.email);
+      console.log(user);
+    } else {
+      document.getElementById('loginHome').innerHTML = 'No Logueado ';
+    }
+  });
 };
+
 export const logInGoogle = () => {
   console.log('Hola, soy google log in');
   login();
@@ -129,3 +159,14 @@ export const logInGoogle = () => {
 //     // An error happened.
 //     });
 // };
+
+export const cerrar = () => {
+  firebase.auth().signOut()
+    .then((result) => {
+      console.log(result);
+      console.log('cerrar');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
