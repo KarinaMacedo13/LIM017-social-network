@@ -18,7 +18,7 @@ export const login = () => {
         <button class="btnSignupLogin" id="btnLogIn">Log In</button>
         <input class="input" type="text" placeholder="" readonly />
         <label class="labelOr">OR</label>
-        <button class="btnGoogle" id="btnSignUpGoogle"><span class="fa-brands fa-google"></span> Log In with Google</button>
+        <button class="btnGoogle" id="btnLogInGoogle"><span class="fa-brands fa-google"></span> Log In with Google</button>
         <p class="messageLogIn"></p>
         <p class="message">Already have an account?</p>
         <button class="btnSig" id="signUpHere">Sign Up here.</button>
@@ -29,4 +29,3 @@ export const login = () => {
   `;
   return htmlLogin;
 };
-

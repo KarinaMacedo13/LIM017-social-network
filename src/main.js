@@ -2,7 +2,7 @@
 import { home } from './templates/home.js';
 import { register } from './templates/register.js';
 import {
-  registerFirebase, registerGoogle, loginFirebase, logInGoogle,
+  registerFirebase, registerGoogle, loginFirebase, logInGoogle, cerrar,
 } from './lib/firebase.js';
 import { login } from './templates/login.js';
 
@@ -31,11 +31,14 @@ const onNavigate = (pathname) => {
 // rootDiv.appendChild(component());
 
 window.onpopstate = () => {
-  rootDiv.appendChild = routes[window.location.pathname];
+  rootDiv.innerHTML = routes[window.location.pathname]();
 };
 onNavigate('/');
+
 export function registerToHome() {
   onNavigate('/home');
+  // eslint-disable-next-line no-use-before-define
+  showHome();
 }
 
 function showRegister() {
@@ -86,6 +89,15 @@ function showLogin() {
 }
 
 showLogin();
+
+function showHome() {
+  document.querySelector('#btnLogOut').addEventListener('click', () => {
+    cerrar();
+    onNavigate('/home');
+    // eslint-disable-next-line no-use-before-define
+    showLogin();
+  });
+}
 
 // function homepage() {
 //   const btnLogOut = document.getElementById('btnLogOut');
