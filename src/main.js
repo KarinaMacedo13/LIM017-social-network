@@ -1,7 +1,9 @@
 /* eslint-disable import/no-cycle */
 import { home } from './templates/home.js';
 import { register } from './templates/register.js';
-import { registerFirebase, registerGoogle, loginFirebase } from './lib/firebase.js';
+import {
+  registerFirebase, registerGoogle, loginFirebase, logInGoogle,
+} from './lib/firebase.js';
 import { login } from './templates/login.js';
 
 const rootDiv = document.getElementById('root');
@@ -22,9 +24,15 @@ const onNavigate = (pathname) => {
   );
   loadPage();
 };
+// const component = routes[window.location.pathname]; // sale ruta
 // window.onpopstate = () => {
-//   rootDiv.innerHTML = routes[window.location.pathname];
+//   rootDiv.appendChild(component());
 // };
+// rootDiv.appendChild(component());
+
+window.onpopstate = () => {
+  rootDiv.appendChild = routes[window.location.pathname];
+};
 onNavigate('/');
 export function registerToHome() {
   onNavigate('/home');
@@ -32,8 +40,8 @@ export function registerToHome() {
 
 function showRegister() {
   // btn LogIn, from Register to Log in
-  const btnUp = document.getElementById('btnUp');
-  btnUp.addEventListener('click', () => {
+  const logInHere = document.getElementById('logInHere');
+  logInHere.addEventListener('click', () => {
     onNavigate('/');
     // eslint-disable-next-line no-use-before-define
     showLogin();
@@ -49,17 +57,14 @@ function showRegister() {
   const btnSignUpGoogle = document.getElementById('btnSignUpGoogle');
   btnSignUpGoogle.addEventListener('click', () => {
     registerGoogle();
-    onNavigate('/');
+    // onNavigate('/');
   });
-  // document.querySelector('btnSignUpGoogle').addEventListener('click', () => {
-  //   registerGoogle();
-  // });
 }
 
 function showLogin() {
   // SignHere -> register
-  const btnSign = document.getElementById('btnSign');
-  btnSign.addEventListener('click', () => {
+  const signUpHere = document.getElementById('signUpHere');
+  signUpHere.addEventListener('click', () => {
     console.log('Hola');
     onNavigate('/register');
     showRegister();
@@ -71,7 +76,12 @@ function showLogin() {
     const passwordLogIn = document.querySelector('#passwordLogIn').value;
     loginFirebase(emailLogIn, passwordLogIn);
     // onNavigate('/home');
-    showRegister();
+    // showRegister();
+  });
+  // LOG IN GOOGLE
+  const btnLogInGoogle = document.getElementById('btnLogInGoogle');
+  btnLogInGoogle.addEventListener('click', () => {
+    logInGoogle();
   });
 }
 

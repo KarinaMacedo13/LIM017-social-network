@@ -44,7 +44,7 @@ export const firebaseBefit = firebase.initializeApp(firebaseConfig);
 // });
 
 export const registerFirebase = (email, password) => {
-  const messageSignUp = document.querySelector('.messageSignUp');
+  const messageSignUpError = document.querySelector('.messageSignUpError');
   register();
   const registerBefit = firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
@@ -62,20 +62,20 @@ export const registerFirebase = (email, password) => {
       console.log(errorCode);
       const errorMessage = error.message;
       console.log(errorMessage);
-      messageSignUp.innerHTML = errorMessage;
+      messageSignUpError.innerHTML = errorMessage;
     });
   console.log(registerBefit);
   return registerBefit;
 };
 
 export const registerGoogle = () => {
-  const messageSignUp = document.querySelector('.messageSignUp');
+  const messageSignUpError = document.querySelector('.messageSignUpError');
   register();
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth()
     .signInWithPopup(provider)
     .then((result) => {
-      messageSignUp.innerHTML = result;
+      messageSignUpError.innerHTML = result;
       registerToHome();
     })
     .catch((error) => {
@@ -83,7 +83,7 @@ export const registerGoogle = () => {
       console.log(errorCode);
       const errorMessage = error.message;
       console.log(errorMessage);
-      messageSignUp.innerHTML = error;
+      messageSignUpError.innerHTML = error;
     });
 };
 
@@ -107,7 +107,17 @@ export const loginFirebase = (emailLogIn, passwordLogIn) => {
       // alert(errorMessage);
     });
 };
-
+export const logInGoogle = () => {
+  console.log('Hola, soy google log in');
+  login();
+  const provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider).then((res) => {
+    console.log(res.user);
+    registerToHome();
+  }).catch((e) => {
+    console.log(e);
+  });
+};
 // export const verificar = () => {
 //   const user = firebase.auth().currentUser;
 //   user.sendEmailVerification()

@@ -11,23 +11,24 @@
   display: grid;
   grid-template-columns: 10% 90%;
   grid-template-rows: 20% 80%;
-  grid-template-areas: "logo logo" "tabs space";
+  grid-template-areas: "logoPhone logoPhone" "tabs space";
 }
 
-.logo {
-  grid-area: logo;
+.logoPhone {
+  grid-area: logoPhone;
   position: relative;
   width: 7em;
   left: 40%;
+  margin-top: 20px;
 }
-.tabs{
-  grid-area: tabs;
+.grid-container {
+  /* grid-area: tabs; */
   display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 100%;
+  /* grid-template-columns: 100%;
+  grid-template-rows: 100%; */
   grid-template-areas: "tab";
 }
-.info{
+.logoLema-container {
   /* grid-area: info; */
   display: none;
   width: 0%;
@@ -47,20 +48,22 @@
 #login{
   font-size: 100%;
 }
-.logIn {
+.logIn-container {
   display: grid;
-  gap: 4%;
+  gap: 8%;
   font-family: "Telex", sans-serif;
+  margin-top: 20%;
+  margin-left:5%;
 }
 
-.logIn h1 {
+.logIn-container h1 {
   font-family: "Telex", sans-serif;
   font-size: 200%;
   line-height: 136.5%;
   color: #4bc3fe;
 }
 
-.signUp h1 {
+.signUp-container h1 {
   font-family: "Telex", sans-serif;
   font-size: 200%;
   line-height: 136.5%;
@@ -70,7 +73,7 @@
 .input {
   background: none;
   color: black;
-  width: 90%;
+  width: 80%;
   font-size: 1em;
   padding: 1%;
   border: none;
@@ -82,7 +85,11 @@
 .labels{
   color: #C4C4C4;
   cursor: pointer;
-  font-size: 0.8em;
+}
+
+.labelOr{
+  font-size: 16px;
+  margin-left: 35%;
 }
 
 /* .signUp {
@@ -103,6 +110,7 @@
   cursor: pointer;
   outline: none;
   box-shadow: 1px 1px 1px grey;
+  font-size: 0.9em;
 }
 .btnGoogle {
   background: white;
@@ -112,6 +120,7 @@
   border-radius: 8px;
   border: thin solid #888;
   box-shadow: 1px 1px 1px grey;
+  font-size: 0.9em;
 }
 
 .btnSig {
@@ -134,14 +143,15 @@
 }
 
 .message{
-  margin-top: 5%;
-  font-size: 0.8em;
+  margin-top: 1%;
+  font-size: 0.9em;
 }
 
-.messageSignUp{
+.messageSignUpError{
   /* display: none; */
   margin-top: 5%;
   font-size: 0.8em;
+  color: rgb(255,0,0);
 }
 
 .messageLogIn{
@@ -162,16 +172,16 @@
     grid-template-rows: 100%;
     grid-template-areas: "tabs space";
   }
-  .logo{
+  .logoPhone{
     display: none;
   }
-  .tabs {
+  .grid-container {
     display: grid;
     grid-template-columns: 90% 10%;
     grid-template-rows: 100%;
     grid-template-areas: "info tab";
   }
-  .info{
+  .logoLema-container {
     grid-area: info;
     width: 100%;
     height: 100%;
@@ -180,7 +190,7 @@
     align-items: center;
     justify-content: center;
   }
-  .logoTab{
+  .logoWeb{
     width: 50%;
   }
   .lema{
@@ -189,5 +199,10 @@
   }
   .containerSignUpLogIn {
     border-radius: 40px 0px 0px 40px;
+  }
+
+  .logIn-container {
+    gap: 6%;
+    margin-top: 10%;
   }
 }

@@ -1,16 +1,15 @@
-// eslint-disable-next-line import/no-cycle
-// import { onNavigate } from '../main.js';
 export const register = () => {
   const htmlRegister = `
   <div class="container">
-    <div class="tabs">
-      <div class="info">
-        <img class="logoTab" src="./img/logo.png">
+  <img class="logoPhone" src="./img/logo.png">
+    <div class="grid-container">
+      <div class="logoLema-container">
+        <img class="logoWeb" src="./img/logo.png">
         <p class="lema"> A place where you find people like you. </p>
       </div>
     </div>
     <div class="containerSignUpLogIn">
-      <div class="signUp">
+      <div class="signUp-container">
         <div class="signUpContent">
           <h1>Sign up</h1>
           <label class="labels" for="fullName"> Full Name </label>
@@ -23,9 +22,9 @@ export const register = () => {
           <input class="input" id="passwordSignUp" type="password" placeholder=" " />
           <button class="btnSignupLogin" id="btnRegister">Sign Up</button><br>
           <button class="btnGoogle" id="btnSignUpGoogle"> <span class="fa-brands fa-google"> </span> Sign Up with Google</button>
-          <p class="messageSignUp"></p>
+          <p class="messageSignUpError"></p>
           <p class="message">Already have an account?</p>
-          <button class="btnSig" id="btnUp"> Log In </button>
+          <button class="btnSig" id="logInHere"> Log In </button>
         </div>
       </div>
     </div>
