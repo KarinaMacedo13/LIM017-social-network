@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import { registerToHome } from '../main.js';
 import { register } from '../templates/register.js';
 import { login } from '../templates/login.js';
@@ -56,6 +57,8 @@ export const registerFirebase = (email, password) => {
       // messageSignUp.innerHTML = palabra + email + palabra2 + password + user;
       // llamar a home
       console.log(user);
+      // eslint-disable-next-line no-use-before-define
+      getDates();
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -65,6 +68,7 @@ export const registerFirebase = (email, password) => {
       messageSignUpError.innerHTML = errorMessage;
     });
   console.log(registerBefit);
+  // eslint-disable-next-line no-use-before-define
   return registerBefit;
 };
 
@@ -77,6 +81,8 @@ export const registerGoogle = () => {
     .then((result) => {
       messageSignUpError.innerHTML = result;
       registerToHome();
+      // eslint-disable-next-line no-use-before-define
+      getDates();
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -106,6 +112,11 @@ export const loginFirebase = (emailLogIn, passwordLogIn) => {
       messageLogIn.innerHTML = errorMessage2;
       // alert(errorMessage);
     });
+  // eslint-disable-next-line no-use-before-define
+  getDates();
+};
+
+function getDates() {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       const displayName = user.displayName;
@@ -113,6 +124,7 @@ export const loginFirebase = (emailLogIn, passwordLogIn) => {
       const email = user.email;
       console.log(email);
       const emailVerified = user.emailVerified;
+      console.log(emailVerified);
       // let textoVerificado = '';
       // if (emailVerified === false) {
       //   textoVerificado = ' Email no verificado';
@@ -132,10 +144,10 @@ export const loginFirebase = (emailLogIn, passwordLogIn) => {
       console.log(vr + user.email);
       console.log(user);
     } else {
-      document.getElementById('loginHome').innerHTML = 'No Logueado ';
+      document.getElementById('login').innerHTML = 'No Logueado ';
     }
   });
-};
+}
 
 export const logInGoogle = () => {
   console.log('Hola, soy google log in');
@@ -147,6 +159,7 @@ export const logInGoogle = () => {
   }).catch((e) => {
     console.log(e);
   });
+  getDates();
 };
 // export const verificar = () => {
 //   const user = firebase.auth().currentUser;
