@@ -44,6 +44,18 @@ export function registerToHome() {
 function showRegister() {
   // btn LogIn, from Register to Log in
   const logInHere = document.getElementById('logInHere');
+  const name = document.querySelector('#name');
+  const lastName = document.querySelector('#lastName');
+  name.addEventListener('keyup', (e) => {
+    const valorName = e.target.value;
+    console.log(valorName);
+    name.value = valorName.replace(/\d/g, '');// no permite números y letras mayúsculas
+  });
+  lastName.addEventListener('keyup', (e) => {
+    const valorLastName = e.target.value;
+    console.log(valorLastName);
+    lastName.value = valorLastName.replace(/\d/g, '');// no permite números y letras mayúsculas
+  });
   logInHere.addEventListener('click', () => {
     onNavigate('/');
     // eslint-disable-next-line no-use-before-define
@@ -53,8 +65,17 @@ function showRegister() {
   const btnRegister = document.getElementById('btnRegister');
   btnRegister.addEventListener('click', () => {
     const email = document.querySelector('#emailSignUp').value;
+    console.log(email);
     const password = document.querySelector('#passwordSignUp').value;
-    registerFirebase(email, password);
+    // validar espacios
+    if ((name.value === '') || (lastName.value === '') || (email === '') || (password === '')) {
+      console.log('Campos vacios');
+      // e.preventDefault();
+      const messageSignUpError = document.querySelector('.messageSignUpError');
+      messageSignUpError.innerHTML = 'Fill in the missing field';
+    } else {
+      registerFirebase(email, password);
+    }
   });
   // Button Google
   const btnSignUpGoogle = document.getElementById('btnSignUpGoogle');
@@ -77,7 +98,15 @@ function showLogin() {
   btnLogIn.addEventListener('click', () => {
     const emailLogIn = document.querySelector('#emailLogIn').value;
     const passwordLogIn = document.querySelector('#passwordLogIn').value;
-    loginFirebase(emailLogIn, passwordLogIn);
+
+    if ((emailLogIn === '') || (passwordLogIn === '')) {
+      console.log('Campos vacios');
+      // e.preventDefault();
+      const messageLogIn = document.querySelector('.messageLogIn');
+      messageLogIn.innerHTML = 'Fill in the missing field';
+    } else {
+      loginFirebase(emailLogIn, passwordLogIn);
+    }
     // onNavigate('/home');
     // showRegister();
   });

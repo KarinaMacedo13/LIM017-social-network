@@ -122,7 +122,6 @@ function getDates() {
       const displayName = user.displayName;
       console.log(displayName);
       const email = user.email;
-      console.log(email);
       const emailVerified = user.emailVerified;
       console.log(emailVerified);
       // let textoVerificado = '';
@@ -140,7 +139,7 @@ function getDates() {
       const providerData = user.providerData;
       console.log(providerData);
       const vr = 'logueado: ';
-      document.getElementById('loginHome').innerHTML = vr + user.email;
+      document.getElementById('loginHome').innerHTML = vr + email;
       console.log(vr + user.email);
       console.log(user);
     } else {

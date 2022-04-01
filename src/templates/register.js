@@ -12,8 +12,8 @@ export const register = () => {
       <div class="signUp-container">
         <div class="signUpContent">
           <h1>Sign up</h1>
-          <label class="labels" for="fullName"> Full Name </label>
-          <input class="input" id="fullName" type="text" placeholder=" "/>
+          <label class="labels" for="fullName"> Name </label>
+          <input class="input" id="name" type="text" placeholder=" "/>
           <label class="labels" for="lastName"> Last Name </label>
           <input class="input" id="lastName" type="text" placeholder=" "/>
           <label class="labels" for="emailSignUp"> Email </label>
