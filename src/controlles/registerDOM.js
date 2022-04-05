@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 import { register } from '../templates/register.js';
 import { onNavigate, registerToHome, showLogin } from '../main.js';
-import { registerFirebase, registerGoogle, getData } from '../lib/firebase.js';
+import { registerFirebase, registerAndLoginGoogle, getData } from '../lib/firebase.js';
 
 export function showRegister() {
   register();
@@ -59,7 +59,10 @@ export function showRegister() {
   // Button Google
   const btnSignUpGoogle = document.getElementById('btnSignUpGoogle');
   btnSignUpGoogle.addEventListener('click', () => {
-    registerGoogle();
-    // onNavigate('/');
+    registerAndLoginGoogle()
+      .then((result) => {
+        registerToHome();
+        getData();
+      });
   });
 }

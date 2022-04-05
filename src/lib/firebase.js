@@ -11,22 +11,16 @@ const firebaseConfig = {
   appId: '1:1024930608861:web:fc5e31e75040e33e788d34',
   measurementId: 'G-4FPZYCWMCE',
 };
-// Initialize Firebase
+// Inicia Firebase
 export const firebaseBefit = firebase.initializeApp(firebaseConfig);
 
+// Registro de Firebase con Email
 export const registerFirebase = (email, password) => firebase.auth()
   .createUserWithEmailAndPassword(email, password);
-
-export const registerGoogle = () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth()
-    .signInWithPopup(provider)
-    .then((result) => {
-      // registerToHome();
-      getData();
-    });
-};
-
+// Registro y logueo con Google
+const provider = new firebase.auth.GoogleAuthProvider();
+export const registerAndLoginGoogle = () => firebase.auth().signInWithPopup(provider);
+// Login de Firebase con Email
 export const loginFirebase = (emailLogIn, passwordLogIn) => {
   const messageLogIn = document.querySelector('.messageLogIn');
   login();
@@ -82,18 +76,6 @@ export const getData = () => {
   });
 };
 
-export const logInGoogle = () => {
-  console.log('Hola, soy google log in');
-  login();
-  const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider).then((res) => {
-    console.log(res.user);
-    // registerToHome();
-  }).catch((e) => {
-    console.log(e);
-  });
-  getData();
-};
 // export const verificar = () => {
 //   const user = firebase.auth().currentUser;
 //   user.sendEmailVerification()
