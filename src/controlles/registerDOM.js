@@ -1,9 +1,12 @@
 /* eslint-disable import/no-cycle */
-import { onNavigate } from '../main.js';
+import { register } from '../templates/register.js';
+import { showLogin } from '../main.js';
+import { onNavigate, registerToHome } from '../main.js';
 import { registerFirebase, registerGoogle } from '../lib/firebase.js';
 
 export function showRegister() {
-// btn LogIn, from Register to Log in
+  register();
+  // btn LogIn, from Register to Log in
   const logInHere = document.getElementById('logInHere');
   const name = document.querySelector('#name');
   const lastName = document.querySelector('#lastName');
@@ -20,7 +23,7 @@ export function showRegister() {
   logInHere.addEventListener('click', () => {
     onNavigate('/');
     // eslint-disable-next-line no-use-before-define
-    // showLogin();
+    showLogin();
   });
   // SignUp button -> LogIn
   const btnRegister = document.getElementById('btnRegister');
@@ -36,6 +39,7 @@ export function showRegister() {
       messageSignUpError.innerHTML = 'Fill in the missing field';
     } else {
       registerFirebase(email, password);
+      console.log(registerFirebase(email, password));
     }
   });
   // Button Google

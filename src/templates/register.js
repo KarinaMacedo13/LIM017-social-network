@@ -24,7 +24,7 @@ export const register = () => {
           <button class="btnGoogle" id="btnSignUpGoogle"> <span class="fa-brands fa-google"> </span> Sign Up with Google</button>
           <p class="messageSignUpError"></p>
           <p class="message">Already have an account?</p>
-          <button class="btnSig" id="logInHere"> Log In </button>
+          <button class="btnSig" id="logInHere"> Log In here </button>
         </div>
       </div>
     </div>

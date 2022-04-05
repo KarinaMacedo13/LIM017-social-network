@@ -15,81 +15,43 @@ const firebaseConfig = {
 // Initialize Firebase
 export const firebaseBefit = firebase.initializeApp(firebaseConfig);
 
-// firebase.auth().onAuthStateChanged((user) => {
-//   if (user) {
-//     const displayName = user.displayName;
-//     console.log(displayName);
-//     const email = user.email;
-//     console.log(email);
-//     const emailVerified = user.emailVerified;
-//     let textoVerificado = '';
-//     if (emailVerified === false) {
-//       textoVerificado = ' Email no verificado';
-//     } else {
-//       textoVerificado = ' Email verificado';
-//     }
-//     const photoURL = user.photoURL;
-//     console.log(photoURL);
-//     const isAnonymous = user.isAnonymous;
-//     console.log(isAnonymous);
-//     const uid = user.uid;
-//     console.log(uid);
-//     const providerData = user.providerData;
-//     console.log(providerData);
-//     const vr = 'logueado';
-//     document.getElementById('login').innerHTML = vr + user.email + textoVerificado;
-//     console.log(user);
-//   } else {
-//     document.getElementById('login').innerHTML = 'No Logueado ';
-//   }
-// });
-
 export const registerFirebase = (email, password) => {
   const messageSignUpError = document.querySelector('.messageSignUpError');
-  register();
-  const registerBefit = firebase.auth().createUserWithEmailAndPassword(email, password)
+
+  firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      // onNavigate('/');
-      registerToHome();
-      // const palabra = 'Tu cuenta a sido creado con éxito, con el email: ';
-      // const palabra2 = ' y la contraseña: ';
-      // messageSignUp.innerHTML = palabra + email + palabra2 + password + user;
-      // llamar a home
       console.log(user);
       // eslint-disable-next-line no-use-before-define
       getDates();
+      registerToHome();
+      const mistake = false;
+      // return mistake;
     })
     .catch((error) => {
       const errorCode = error.code;
-      console.log(errorCode);
+      const erCod = 'ERROR';
+      console.log(erCod + errorCode);
       const errorMessage = error.message;
       console.log(errorMessage);
       messageSignUpError.innerHTML = errorMessage;
+      const er = 'ERROR';
+      console.log(er + error);
+      const mistake = true;
+      console.log(mistake);
+      // return mistake;
     });
-  console.log(registerBefit);
-  // eslint-disable-next-line no-use-before-define
-  return registerBefit;
 };
 
 export const registerGoogle = () => {
-  const messageSignUpError = document.querySelector('.messageSignUpError');
   register();
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth()
     .signInWithPopup(provider)
     .then((result) => {
-      messageSignUpError.innerHTML = result;
       registerToHome();
       // eslint-disable-next-line no-use-before-define
       getDates();
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      console.log(errorCode);
-      const errorMessage = error.message;
-      console.log(errorMessage);
-      messageSignUpError.innerHTML = error;
     });
 };
 

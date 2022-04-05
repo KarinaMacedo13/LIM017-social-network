@@ -84,7 +84,7 @@ export function registerToHome() {
 //   });
 // }
 
-function showLogin() {
+export function showLogin() {
   // SignHere -> register
   const signUpHere = document.getElementById('signUpHere');
   signUpHere.addEventListener('click', () => {
