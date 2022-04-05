@@ -1,11 +1,9 @@
 /* eslint-disable import/no-cycle */
 import { home } from './templates/home.js';
 import { register } from './templates/register.js';
-import {
-  loginFirebase, cerrar, registerAndLoginGoogle, getData,
-} from './lib/firebase.js';
+import { cerrar } from './lib/firebase.js';
 import { login } from './templates/login.js';
-import { showRegister } from './controlles/registerDOM.js';
+import { showLogin } from './controlles/loginDOM.js';
 
 const rootDiv = document.getElementById('root');
 const routes = {
@@ -37,39 +35,39 @@ export function registerToHome() {
   showHome();
 }
 
-export function showLogin() {
-  // SignHere -> register
-  const signUpHere = document.getElementById('signUpHere');
-  signUpHere.addEventListener('click', () => {
-    console.log('Hola');
-    onNavigate('/register');
-    showRegister();
-  });
-  // Login button -> home
-  const btnLogIn = document.getElementById('btnLogIn');
-  btnLogIn.addEventListener('click', () => {
-    const emailLogIn = document.querySelector('#emailLogIn').value;
-    const passwordLogIn = document.querySelector('#passwordLogIn').value;
+// export function showLogin() {
+//   // SignHere -> register
+//   const signUpHere = document.getElementById('signUpHere');
+//   signUpHere.addEventListener('click', () => {
+//     console.log('Hola');
+//     onNavigate('/register');
+//     showRegister();
+//   });
+//   // Login button -> home
+//   const btnLogIn = document.getElementById('btnLogIn');
+//   btnLogIn.addEventListener('click', () => {
+//     const emailLogIn = document.querySelector('#emailLogIn').value;
+//     const passwordLogIn = document.querySelector('#passwordLogIn').value;
 
-    if ((emailLogIn === '') || (passwordLogIn === '')) {
-      console.log('Campos vacios');
-      // e.preventDefault();
-      const messageLogIn = document.querySelector('.messageLogIn');
-      messageLogIn.innerHTML = 'Fill in the missing field';
-    } else {
-      loginFirebase(emailLogIn, passwordLogIn);
-    }
-  });
-  // LOG IN GOOGLE
-  const btnLogInGoogle = document.getElementById('btnLogInGoogle');
-  btnLogInGoogle.addEventListener('click', () => {
-    registerAndLoginGoogle()
-      .then((result) => {
-        registerToHome();
-        getData();
-      });
-  });
-}
+//     if ((emailLogIn === '') || (passwordLogIn === '')) {
+//       console.log('Campos vacios');
+//       // e.preventDefault();
+//       const messageLogIn = document.querySelector('.messageLogIn');
+//       messageLogIn.innerHTML = 'Fill in the missing field';
+//     } else {
+//       loginFirebase(emailLogIn, passwordLogIn);
+//     }
+//   });
+//   // LOG IN GOOGLE
+//   const btnLogInGoogle = document.getElementById('btnLogInGoogle');
+//   btnLogInGoogle.addEventListener('click', () => {
+//     registerAndLoginGoogle()
+//       .then(() => {
+//         registerToHome();
+//         getData();
+//       });
+//   });
+// }
 
 showLogin();
 
