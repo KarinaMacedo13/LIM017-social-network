@@ -1,8 +1,7 @@
 /* eslint-disable import/no-cycle */
 import { register } from '../templates/register.js';
-import { showLogin } from '../main.js';
-import { onNavigate, registerToHome } from '../main.js';
-import { registerFirebase, registerGoogle } from '../lib/firebase.js';
+import { onNavigate, registerToHome, showLogin } from '../main.js';
+import { registerFirebase, registerGoogle, getData } from '../lib/firebase.js';
 
 export function showRegister() {
   register();
@@ -38,7 +37,22 @@ export function showRegister() {
       const messageSignUpError = document.querySelector('.messageSignUpError');
       messageSignUpError.innerHTML = 'Fill in the missing field';
     } else {
-      registerFirebase(email, password);
+      const messageSignUpError = document.querySelector('.messageSignUpError');
+      registerFirebase(email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+          // eslint-disable-next-line no-use-before-define
+          getData();
+          registerToHome();
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          console.log(errorCode);
+          const errorMessage = error.message;
+          console.log(errorMessage);
+          messageSignUpError.innerHTML = errorMessage;
+        });
       console.log(registerFirebase(email, password));
     }
   });
