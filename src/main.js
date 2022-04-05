@@ -1,7 +1,9 @@
 /* eslint-disable import/no-cycle */
 import { home } from './templates/home.js';
 import { register } from './templates/register.js';
-import { loginFirebase, logInGoogle, cerrar } from './lib/firebase.js';
+import {
+  loginFirebase, cerrar, registerAndLoginGoogle, getData,
+} from './lib/firebase.js';
 import { login } from './templates/login.js';
 import { showRegister } from './controlles/registerDOM.js';
 
@@ -61,7 +63,11 @@ export function showLogin() {
   // LOG IN GOOGLE
   const btnLogInGoogle = document.getElementById('btnLogInGoogle');
   btnLogInGoogle.addEventListener('click', () => {
-    logInGoogle();
+    registerAndLoginGoogle()
+      .then((result) => {
+        registerToHome();
+        getData();
+      });
   });
 }
 
