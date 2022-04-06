@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/no-cycle
 import { registerToHome } from '../main.js';
-import { register } from '../views/register.js';
 import { login } from '../views/login.js';
 
 const firebaseConfig = {
@@ -15,82 +14,23 @@ const firebaseConfig = {
 // Initialize Firebase
 export const firebaseBefit = firebase.initializeApp(firebaseConfig);
 
-// firebase.auth().onAuthStateChanged((user) => {
-//   if (user) {
-//     const displayName = user.displayName;
-//     console.log(displayName);
-//     const email = user.email;
-//     console.log(email);
-//     const emailVerified = user.emailVerified;
-//     let textoVerificado = '';
-//     if (emailVerified === false) {
-//       textoVerificado = ' Email no verificado';
-//     } else {
-//       textoVerificado = ' Email verificado';
-//     }
-//     const photoURL = user.photoURL;
-//     console.log(photoURL);
-//     const isAnonymous = user.isAnonymous;
-//     console.log(isAnonymous);
-//     const uid = user.uid;
-//     console.log(uid);
-//     const providerData = user.providerData;
-//     console.log(providerData);
-//     const vr = 'logueado';
-//     document.getElementById('login').innerHTML = vr + user.email + textoVerificado;
-//     console.log(user);
-//   } else {
-//     document.getElementById('login').innerHTML = 'No Logueado ';
-//   }
-// });
-
+// Registro con correo
 export const registerFirebase = (email, password) => {
   const registerBefit = firebase.auth().createUserWithEmailAndPassword(email, password);
   return registerBefit;
 };
 
+// Registro y logueo con Google
+const provider = new firebase.auth.GoogleAuthProvider();
 export const registerGoogle = () => {
-  const messageSignUpError = document.querySelector('.messageSignUpError');
-  register();
-  const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth()
-    .signInWithPopup(provider)
-    .then((result) => {
-      messageSignUpError.innerHTML = result;
-      registerToHome();
-      // eslint-disable-next-line no-use-before-define
-      getDates();
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      console.log(errorCode);
-      const errorMessage = error.message;
-      console.log(errorMessage);
-      messageSignUpError.innerHTML = error;
-    });
+  const registerandLoginGoogleBefit = firebase.auth().signInWithPopup(provider);
+  return registerandLoginGoogleBefit;
 };
 
+// Logueo con correo
 export const loginFirebase = (emailLogIn, passwordLogIn) => {
-  const messageLogIn = document.querySelector('.messageLogIn');
-  login();
-  firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn)
-    .then((userCredential) => {
-      registerToHome();
-      // const palabra = 'Tu cuenta a sido creado con éxito, con el email: ';
-      // const palabra2 = ' y la contraseña: ';
-      // messageSignUp.innerHTML = palabra + email + palabra2 + password + user;
-      // llamar a home
-      console.log(userCredential);
-    })
-    .catch((error) => {
-      const errorCode2 = error.code;
-      console.log(errorCode2);
-      const errorMessage2 = error.message;
-      messageLogIn.innerHTML = errorMessage2;
-      // alert(errorMessage);
-    });
-  // eslint-disable-next-line no-use-before-define
-  getDates();
+  const loginBefit = firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn);
+  return loginBefit;
 };
 
 export const getDates = () => {
@@ -128,7 +68,6 @@ export const getDates = () => {
 export const logInGoogle = () => {
   console.log('Hola, soy google log in');
   login();
-  const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider).then((res) => {
     console.log(res.user);
     registerToHome();

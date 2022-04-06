@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { registerFirebase, registerGoogle, getDates } from '../lib/firebase.js';
-import { onNavigate, registerToHome } from '../main.js';
+import { onNavigate } from '../main.js';
 import { register } from '../views/register.js';
 
 export const showRegister = () => {
@@ -41,7 +41,7 @@ export const showRegister = () => {
         .then((userCredential) => {
           const user = userCredential.user;
           // onNavigate('/');
-          registerToHome();
+          onNavigate('/home');
           console.log(user);
           // eslint-disable-next-line no-use-before-define
           getDates();
@@ -58,7 +58,12 @@ export const showRegister = () => {
   // Button Google
   const btnSignUpGoogle = document.getElementById('btnSignUpGoogle');
   btnSignUpGoogle.addEventListener('click', () => {
-    registerGoogle();
-    // onNavigate('/');
+    registerGoogle()
+      .then((result) => {
+        messageSignUpError.innerHTML = result;
+        onNavigate('/home');
+        // eslint-disable-next-line no-use-before-define
+        getDates();
+      });
   });
 };
