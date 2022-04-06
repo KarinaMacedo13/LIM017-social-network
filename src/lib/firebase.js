@@ -1,7 +1,3 @@
-// eslint-disable-next-line import/no-cycle
-import { registerToHome } from '../main.js';
-import { login } from '../views/login.js';
-
 const firebaseConfig = {
   apiKey: 'AIzaSyB1Voc6sDbKr4Py0D90sREgnsbOS8V9QWg',
   authDomain: 'social-media-befit.firebaseapp.com',
@@ -22,7 +18,7 @@ export const registerFirebase = (email, password) => {
 
 // Registro y logueo con Google
 const provider = new firebase.auth.GoogleAuthProvider();
-export const registerGoogle = () => {
+export const registerAndLoginGoogle = () => {
   const registerandLoginGoogleBefit = firebase.auth().signInWithPopup(provider);
   return registerandLoginGoogleBefit;
 };
@@ -33,7 +29,7 @@ export const loginFirebase = (emailLogIn, passwordLogIn) => {
   return loginBefit;
 };
 
-export const getDates = () => {
+export const getData = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       const displayName = user.displayName;
@@ -65,17 +61,6 @@ export const getDates = () => {
   });
 };
 
-export const logInGoogle = () => {
-  console.log('Hola, soy google log in');
-  login();
-  firebase.auth().signInWithPopup(provider).then((res) => {
-    console.log(res.user);
-    registerToHome();
-  }).catch((e) => {
-    console.log(e);
-  });
-  getDates();
-};
 // export const verificar = () => {
 //   const user = firebase.auth().currentUser;
 //   user.sendEmailVerification()
