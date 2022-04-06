@@ -66,8 +66,6 @@ export const getData = () => {
       console.log(uid);
       const providerData = user.providerData;
       console.log(providerData);
-      // debugger;
-      // localStorage.setItem('user', JSON.stringify(user));
       const vr = 'logueado: ';
       document.getElementById('loginHome').innerHTML = vr + email;
       console.log(vr + user.email);

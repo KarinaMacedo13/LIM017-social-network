@@ -1,7 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { register } from '../templates/register.js';
-import { onNavigate, registerToHome } from '../main.js';
-import { showLogin } from './loginDOM.js';
+import { onNavigate, registerToHome, showLogin } from '../main.js';
 import { registerFirebase, registerAndLoginGoogle, getData } from '../lib/firebase.js';
 
 export function showRegister() {
@@ -25,10 +24,11 @@ export function showRegister() {
     // eslint-disable-next-line no-use-before-define
     showLogin();
   });
-  // BOTON SIGN UP (REGISTRO)
+  // SignUp button -> LogIn
   const btnRegister = document.getElementById('btnRegister');
   btnRegister.addEventListener('click', () => {
     const email = document.querySelector('#emailSignUp').value;
+    console.log(email);
     const password = document.querySelector('#passwordSignUp').value;
     // validar espacios
     if ((name.value === '') || (lastName.value === '') || (email === '') || (password === '')) {
@@ -56,11 +56,11 @@ export function showRegister() {
       console.log(registerFirebase(email, password));
     }
   });
-  // Button registro Google
+  // Button Google
   const btnSignUpGoogle = document.getElementById('btnSignUpGoogle');
   btnSignUpGoogle.addEventListener('click', () => {
     registerAndLoginGoogle()
-      .then(() => {
+      .then((result) => {
         registerToHome();
         getData();
       });
