@@ -58,7 +58,12 @@ export const showRegister = () => {
   // Button Google
   const btnSignUpGoogle = document.getElementById('btnSignUpGoogle');
   btnSignUpGoogle.addEventListener('click', () => {
-    registerGoogle();
-    // onNavigate('/');
+    registerGoogle()
+      .then((result) => {
+        messageSignUpError.innerHTML = result;
+        registerToHome();
+        // eslint-disable-next-line no-use-before-define
+        getDates();
+      });
   });
 };

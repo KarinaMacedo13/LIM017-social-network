@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/no-cycle
 import { registerToHome } from '../main.js';
-import { register } from '../views/register.js';
 import { login } from '../views/login.js';
 
 const firebaseConfig = {
@@ -49,25 +48,13 @@ export const registerFirebase = (email, password) => {
   return registerBefit;
 };
 
+// Registro y logueo con Google
+// const provider = new firebase.auth.GoogleAuthProvider();
+// export const registerAndLoginGoogle = () => firebase.auth().signInWithPopup(provider);
+const provider = new firebase.auth.GoogleAuthProvider();
 export const registerGoogle = () => {
-  const messageSignUpError = document.querySelector('.messageSignUpError');
-  register();
-  const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth()
-    .signInWithPopup(provider)
-    .then((result) => {
-      messageSignUpError.innerHTML = result;
-      registerToHome();
-      // eslint-disable-next-line no-use-before-define
-      getDates();
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      console.log(errorCode);
-      const errorMessage = error.message;
-      console.log(errorMessage);
-      messageSignUpError.innerHTML = error;
-    });
+  const registerandLoginGoogleBefit = firebase.auth().signInWithPopup(provider);
+  return registerandLoginGoogleBefit;
 };
 
 export const loginFirebase = (emailLogIn, passwordLogIn) => {
