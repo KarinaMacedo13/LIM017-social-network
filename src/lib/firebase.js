@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-cycle
 import { registerToHome } from '../main.js';
-import { register } from '../templates/register.js';
-import { login } from '../templates/login.js';
+import { register } from '../views/register.js';
+import { login } from '../views/login.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyB1Voc6sDbKr4Py0D90sREgnsbOS8V9QWg',
@@ -45,30 +45,7 @@ export const firebaseBefit = firebase.initializeApp(firebaseConfig);
 // });
 
 export const registerFirebase = (email, password) => {
-  const messageSignUpError = document.querySelector('.messageSignUpError');
-  register();
-  const registerBefit = firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      // onNavigate('/');
-      registerToHome();
-      // const palabra = 'Tu cuenta a sido creado con éxito, con el email: ';
-      // const palabra2 = ' y la contraseña: ';
-      // messageSignUp.innerHTML = palabra + email + palabra2 + password + user;
-      // llamar a home
-      console.log(user);
-      // eslint-disable-next-line no-use-before-define
-      getDates();
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      console.log(errorCode);
-      const errorMessage = error.message;
-      console.log(errorMessage);
-      messageSignUpError.innerHTML = errorMessage;
-    });
-  console.log(registerBefit);
-  // eslint-disable-next-line no-use-before-define
+  const registerBefit = firebase.auth().createUserWithEmailAndPassword(email, password);
   return registerBefit;
 };
 
@@ -116,7 +93,7 @@ export const loginFirebase = (emailLogIn, passwordLogIn) => {
   getDates();
 };
 
-function getDates() {
+export const getDates = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       const displayName = user.displayName;
@@ -146,7 +123,7 @@ function getDates() {
       document.getElementById('login').innerHTML = 'No Logueado ';
     }
   });
-}
+};
 
 export const logInGoogle = () => {
   console.log('Hola, soy google log in');
