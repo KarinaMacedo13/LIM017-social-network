@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { loginFirebase, logInGoogle, getDates } from '../lib/firebase.js';
+import { loginFirebase, registerAndLoginGoogle, getData } from '../lib/firebase.js';
 import { onNavigate } from '../main.js';
 
 export const showLogin = () => {
@@ -21,22 +21,22 @@ export const showLogin = () => {
       loginFirebase(emailLogIn, passwordLogIn)
         .then((userCredential) => {
           onNavigate('/home');
+          getData();
           console.log(userCredential);
         })
         .catch((error) => {
-          const errorCode2 = error.code;
-          console.log(errorCode2);
-          const errorMessage2 = error.message;
-          messageLogIn.innerHTML = errorMessage2;
-          // alert(errorMessage);
+          const errorMessage = error.message;
+          messageLogIn.innerHTML = errorMessage;
         });
-      // eslint-disable-next-line no-use-before-define
-      getDates();
     }
   });
   // LOG IN GOOGLE
   const btnLogInGoogle = document.getElementById('btnLogInGoogle');
   btnLogInGoogle.addEventListener('click', () => {
-    logInGoogle();
+    registerAndLoginGoogle()
+      .then(() => {
+        onNavigate('/home');
+        getData();
+      });
   });
 };
