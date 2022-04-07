@@ -6,7 +6,6 @@ export const showLogin = () => {
   // lINK que dirige al Registro
   const signUpHere = document.getElementById('signUpHere');
   signUpHere.addEventListener('click', () => {
-    console.log('Hola');
     onNavigate('/register');
   });
   const btnLogIn = document.getElementById('btnLogIn');
