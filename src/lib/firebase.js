@@ -73,7 +73,8 @@ export const getData = () => {
 //     });
 // };
 
-export const cerrar = () => {
+// SIGN OUT - CERRAR SESIÓN
+export const singOut = () => {
   firebase.auth().signOut()
     .then((result) => {
       console.log(result);
