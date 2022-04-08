@@ -9,10 +9,12 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 export const firebaseBefit = firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
 
 // Registro con correo
-export const registerFirebase = (email, password) => {
-  const registerBefit = firebase.auth().createUserWithEmailAndPassword(email, password);
+export const registerFirebase = (email, password, name, lastName) => {
+  const registerBefit = firebase.auth()
+    .createUserWithEmailAndPassword(email, password);
   return registerBefit;
 };
 
@@ -28,6 +30,28 @@ export const loginFirebase = (emailLogIn, passwordLogIn) => {
   const loginBefit = firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn);
   return loginBefit;
 };
+
+// export const getData = () => {
+//   const user = firebase.auth().currentUser;
+//   console.log(user);
+//   if (user) {
+//     const displayName = user.displayName;
+//     console.log(displayName);
+//     const email = user.email;
+//     const emailVerified = user.emailVerified;
+//     console.log(emailVerified);
+//     const photoURL = user.photoURL;
+//     console.log(photoURL);
+//     const isAnonymous = user.isAnonymous;
+//     console.log(isAnonymous);
+//     console.log(email);
+//     // User is signed in, see docs for a list of available properties
+//     // https://firebase.google.com/docs/reference/js/firebase.User
+//     // ...
+//   } else {
+//     // No user is signed in.
+//   }
+// };
 
 export const getData = () => {
   firebase.auth().onAuthStateChanged((user) => {
@@ -51,12 +75,12 @@ export const getData = () => {
       console.log(uid);
       const providerData = user.providerData;
       console.log(providerData);
-      const vr = 'logueado: ';
-      document.getElementById('loginHome').innerHTML = vr + email;
-      console.log(vr + user.email);
-      console.log(user);
-    } else {
-      document.getElementById('login').innerHTML = 'No Logueado ';
+      //   const vr = 'logueado: ';
+      //   document.getElementById('loginHome').innerHTML = vr + email;
+      //   console.log(vr + user.email);
+      //   console.log(user);
+      // } else {
+      //   document.getElementById('login').innerHTML = 'No Logueado ';
     }
   });
 };
@@ -84,3 +108,11 @@ export const singOut = () => {
       console.log(error);
     });
 };
+
+// const getPost = () => dataBase.collection('post').get();
+
+// window.addEventListener('DOMContentLoaded', async (e) => {
+//   const postBefit = await getPost();
+//   console.log(postBefit);
+//   console.log(e);
+// });
