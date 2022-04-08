@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { loginFirebase, registerAndLoginGoogle, getData } from '../lib/firebase.js';
+import { loginFirebase, registerAndLoginGoogle } from '../lib/firebase.js';
 import { onNavigate } from '../main.js';
 
 export const showLogin = () => {
@@ -19,8 +19,10 @@ export const showLogin = () => {
     } else {
       loginFirebase(emailLogIn, passwordLogIn)
         .then((userCredential) => {
+          const user = userCredential.user;
+          // getData();
+          localStorage.setItem('user', JSON.stringify(user.email));
           onNavigate('/home');
-          getData();
           console.log(userCredential);
         })
         .catch((error) => {
@@ -35,7 +37,7 @@ export const showLogin = () => {
     registerAndLoginGoogle()
       .then(() => {
         onNavigate('/home');
-        getData();
+        // getData();
       });
   });
 };

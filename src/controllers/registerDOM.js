@@ -1,10 +1,8 @@
 /* eslint-disable import/no-cycle */
-import { registerFirebase, registerAndLoginGoogle, getData } from '../lib/firebase.js';
+import { registerFirebase, registerAndLoginGoogle } from '../lib/firebase.js';
 import { onNavigate } from '../main.js';
-import { register } from '../views/register.js';
 
 export const showRegister = () => {
-  register();
   // btn LogIn, from Register to Log in
   const logInHere = document.getElementById('logInHere');
   const name = document.querySelector('#name');
@@ -30,12 +28,13 @@ export const showRegister = () => {
     if ((name.value === '') || (lastName.value === '') || (email === '') || (password === '')) {
       messageSignUpError.innerHTML = 'Fill in the missing field';
     } else {
-      registerFirebase(email, password)
+      registerFirebase(email, password, name, lastName)
         .then((userCredential) => {
           const user = userCredential.user;
+          // getData();
+          localStorage.setItem('user', JSON.stringify(user.email));
           onNavigate('/home');
           console.log(user);
-          getData();
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -52,7 +51,7 @@ export const showRegister = () => {
     registerAndLoginGoogle()
       .then(() => {
         onNavigate('/home');
-        getData();
+        // getData();
       });
   });
 };
