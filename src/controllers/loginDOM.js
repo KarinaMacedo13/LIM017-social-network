@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { loginFirebase, registerAndLoginGoogle } from '../lib/firebase.js';
+import { loginFirebase, registerAndLoginGoogle } from '../lib/userFirebase.js';
 import { onNavigate } from '../main.js';
 
 export const showLogin = () => {
@@ -21,8 +21,12 @@ export const showLogin = () => {
         .then((userCredential) => {
           const user = userCredential.user;
           // getData();
-          localStorage.setItem('user', JSON.stringify(user.email));
-          onNavigate('/home');
+          if (user.emailVerified) {
+            localStorage.setItem('user', user.displayName);
+            onNavigate('/home');
+          } else {
+            alert('Vericar tu cuenta');
+          }
           console.log(userCredential);
         })
         .catch((error) => {
