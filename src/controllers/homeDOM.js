@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { singOut } from '../lib/firebase.js';
+import { singOut } from '../lib/userFirebase.js';
 import { savePost } from '../lib/postFirebase.js';
 import { onNavigate } from '../main.js';
 
@@ -9,11 +9,12 @@ export const showHome = () => {
     onNavigate('/');
   });
   const loginHome = document.getElementById('loginHome');
-  const emailHome = localStorage.getItem('user');
+  // const emailHome = localStorage.getItem('user');
+  const nameHome = localStorage.getItem('user');
   // loginHome.innerHTML = '';
   const string2 = 'logueado ';
-  loginHome.innerHTML = string2 + emailHome;
-  console.log(emailHome);
+  loginHome.innerHTML = string2 + nameHome;
+  console.log(nameHome);
   // eslint-disable-next-line no-use-before-define
   postForm();
 };

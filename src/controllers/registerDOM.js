@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { registerFirebase, registerAndLoginGoogle } from '../lib/firebase.js';
+import { registerFirebase, registerAndLoginGoogle, verificar} from '../lib/userFirebase.js';
 import { onNavigate } from '../main.js';
 
 export const showRegister = () => {
@@ -24,16 +24,28 @@ export const showRegister = () => {
   btnRegister.addEventListener('click', () => {
     const email = document.querySelector('#emailSignUp').value;
     const password = document.querySelector('#passwordSignUp').value;
+    const nameValue = name.value;
     // validar espacios
     if ((name.value === '') || (lastName.value === '') || (email === '') || (password === '')) {
       messageSignUpError.innerHTML = 'Fill in the missing field';
     } else {
-      registerFirebase(email, password, name, lastName)
+      registerFirebase(email, password, nameValue)
         .then((userCredential) => {
           const user = userCredential.user;
+          verificar();
+          user.updateProfile({
+            // aqui guardas los componentes
+            displayName: nameValue,
+          }).then(() => {
+            alert('Registro exitoso');
+          }).catch((error) => {
+            // An error occurred
+            // ...
           // getData();
-          localStorage.setItem('user', JSON.stringify(user.email));
-          onNavigate('/home');
+          });
+          // localStorage.setItem('user', JSON.stringify(user.email));
+          // localStorage.setItem('name', JSON.stringify(user.displayName));
+          onNavigate('/');
           console.log(user);
         })
         .catch((error) => {

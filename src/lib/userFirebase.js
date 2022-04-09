@@ -10,9 +10,21 @@ const firebaseConfig = {
 // Initialize Firebase
 export const firebaseBefit = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
+// const user = firebase.auth().currentUser;
+// // actualizando el perfil de usuario(nombre y apellido)
 
+// export const updater = (name) => user.updateProfile({
+//   displayName: name,
+//   photoURL: 'https://example.com/jane-q-user/profile.jpg',
+// }).then(() => {
+//   // Update successful
+//   // ...
+// }).catch((error) => {
+//   // An error occurred
+//   // ...
+// });
 // Registro con correo
-export const registerFirebase = (email, password, name, lastName) => {
+export const registerFirebase = (email, password, name) => {
   const registerBefit = firebase.auth()
     .createUserWithEmailAndPassword(email, password);
   return registerBefit;
@@ -33,12 +45,14 @@ export const loginFirebase = (emailLogIn, passwordLogIn) => {
 
 // export const getData = () => {
 //   const user = firebase.auth().currentUser;
-//   console.log(user);
 //   if (user) {
 //     const displayName = user.displayName;
 //     console.log(displayName);
 //     const email = user.email;
 //     const emailVerified = user.emailVerified;
+//     if (emailVerified) {
+//       console.log('email verificado');
+//     }
 //     console.log(emailVerified);
 //     const photoURL = user.photoURL;
 //     console.log(photoURL);
@@ -49,53 +63,53 @@ export const loginFirebase = (emailLogIn, passwordLogIn) => {
 //     // https://firebase.google.com/docs/reference/js/firebase.User
 //     // ...
 //   } else {
-//     // No user is signed in.
+//     console.log('usuario no activo');
 //   }
 // };
 
-export const getData = () => {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      const displayName = user.displayName;
-      console.log(displayName);
-      const email = user.email;
-      const emailVerified = user.emailVerified;
-      console.log(emailVerified);
-      // let textoVerificado = '';
-      // if (emailVerified === false) {
-      //   textoVerificado = ' Email no verificado';
-      // } else {
-      //   textoVerificado = ' Email verificado';
-      // }
-      const photoURL = user.photoURL;
-      console.log(photoURL);
-      const isAnonymous = user.isAnonymous;
-      console.log(isAnonymous);
-      const uid = user.uid;
-      console.log(uid);
-      const providerData = user.providerData;
-      console.log(providerData);
-      //   const vr = 'logueado: ';
-      //   document.getElementById('loginHome').innerHTML = vr + email;
-      //   console.log(vr + user.email);
-      //   console.log(user);
-      // } else {
-      //   document.getElementById('login').innerHTML = 'No Logueado ';
-    }
-  });
-};
-
-// export const verificar = () => {
-//   const user = firebase.auth().currentUser;
-//   user.sendEmailVerification()
-//     .then((result) => {
-//       console.log(result);
-//     // Email sent.
-//     }).catch((error) => {
-//       console.log(error);
-//     // An error happened.
-//     });
+// export const getData = () => {
+//   firebase.auth().onAuthStateChanged((user) => {
+//     if (user) {
+//       const displayName = user.displayName;
+//       console.log(displayName);
+//       const email = user.email;
+//       const emailVerified = user.emailVerified;
+//       console.log(emailVerified);
+//       // let textoVerificado = '';
+//       // if (emailVerified === false) {
+//       //   textoVerificado = ' Email no verificado';
+//       // } else {
+//       //   textoVerificado = ' Email verificado';
+//       // }
+//       const photoURL = user.photoURL;
+//       console.log(photoURL);
+//       const isAnonymous = user.isAnonymous;
+//       console.log(isAnonymous);
+//       const uid = user.uid;
+//       console.log(uid);
+//       const providerData = user.providerData;
+//       console.log(providerData);
+//       //   const vr = 'logueado: ';
+//       //   document.getElementById('loginHome').innerHTML = vr + email;
+//       //   console.log(vr + user.email);
+//       //   console.log(user);
+//       // } else {
+//       //   document.getElementById('login').innerHTML = 'No Logueado ';
+//     }
+//   });
 // };
+
+export const verificar = () => {
+  const user = firebase.auth().currentUser;
+  user.sendEmailVerification()
+    .then((result) => {
+      console.log(result);
+    // Email sent.
+    }).catch((error) => {
+      console.log(error);
+    // An error happened.
+    });
+};
 
 // SIGN OUT - CERRAR SESIÓN
 export const singOut = () => {
