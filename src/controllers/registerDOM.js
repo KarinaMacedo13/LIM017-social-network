@@ -1,5 +1,9 @@
 /* eslint-disable import/no-cycle */
-import { registerFirebase, registerAndLoginGoogle, verificar} from '../lib/userFirebase.js';
+import {
+  registerFirebase, registerAndLoginGoogle,
+  verificar,
+  updater,
+} from '../lib/userFirebase.js';
 import { onNavigate } from '../main.js';
 
 export const showRegister = () => {
@@ -33,16 +37,17 @@ export const showRegister = () => {
         .then((userCredential) => {
           const user = userCredential.user;
           verificar();
-          user.updateProfile({
-            // aqui guardas los componentes
-            displayName: nameValue,
-          }).then(() => {
-            alert('Registro exitoso');
-          }).catch((error) => {
-            // An error occurred
-            // ...
-          // getData();
-          });
+          updater(nameValue);
+          // user.updateProfile({
+          //   // aqui guardas los componentes
+          //   displayName: nameValue,
+          // }).then(() => {
+          //   alert('Registro exitoso');
+          // }).catch((error) => {
+          //   // An error occurred
+          //   // ...
+          // // getData();
+          // });
           // localStorage.setItem('user', JSON.stringify(user.email));
           // localStorage.setItem('name', JSON.stringify(user.displayName));
           onNavigate('/');

@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const firebaseConfig = {
   apiKey: 'AIzaSyB1Voc6sDbKr4Py0D90sREgnsbOS8V9QWg',
   authDomain: 'social-media-befit.firebaseapp.com',
@@ -9,20 +10,20 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 export const firebaseBefit = firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
 // const user = firebase.auth().currentUser;
 // // actualizando el perfil de usuario(nombre y apellido)
-
-// export const updater = (name) => user.updateProfile({
-//   displayName: name,
-//   photoURL: 'https://example.com/jane-q-user/profile.jpg',
-// }).then(() => {
-//   // Update successful
-//   // ...
-// }).catch((error) => {
-//   // An error occurred
-//   // ...
-// });
+export const updater = (name) => {
+  const user = firebase.auth().currentUser;
+  user.updateProfile({
+    displayName: name,
+    photoURL: 'https://example.com/jane-q-user/profile.jpg',
+  }).then(() => {
+    alert('Registro exitoso');
+  }).catch((error) => {
+  // An error occurred
+  // ...
+  });
+};
 // Registro con correo
 export const registerFirebase = (email, password, name) => {
   const registerBefit = firebase.auth()
@@ -43,29 +44,24 @@ export const loginFirebase = (emailLogIn, passwordLogIn) => {
   return loginBefit;
 };
 
-// export const getData = () => {
-//   const user = firebase.auth().currentUser;
-//   if (user) {
-//     const displayName = user.displayName;
-//     console.log(displayName);
-//     const email = user.email;
-//     const emailVerified = user.emailVerified;
-//     if (emailVerified) {
-//       console.log('email verificado');
-//     }
-//     console.log(emailVerified);
-//     const photoURL = user.photoURL;
-//     console.log(photoURL);
-//     const isAnonymous = user.isAnonymous;
-//     console.log(isAnonymous);
-//     console.log(email);
-//     // User is signed in, see docs for a list of available properties
-//     // https://firebase.google.com/docs/reference/js/firebase.User
-//     // ...
-//   } else {
-//     console.log('usuario no activo');
-//   }
-// };
+export const getCurrentUser = () => {
+  const user = firebase.auth().currentUser;
+  if (user !== null) {
+  // The user object has basic properties such as display name, email, etc.
+    // const displayName = user.displayName;
+    // console.log(displayName);
+    // const email = user.email;
+    // console.log(email);
+    // const photoURL = user.photoURL;
+    // console.log(photoURL);
+    // // The user's ID, unique to the Firebase project. Do NOT use
+    // // this value to authenticate with your backend server, if
+    // // you have one. Use User.getIdToken() instead.
+    // const uid = user.uid;
+    // console.log(uid);
+    return user;
+  }
+};
 
 // export const getData = () => {
 //   firebase.auth().onAuthStateChanged((user) => {

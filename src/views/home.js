@@ -5,7 +5,7 @@ export const home = () => {
        <img class="logoWall" src="./img/logoH.png">
     </div>
       <div class="headWall">
-        <h3 id="loginHome"></h3>
+        <h3 id="nameHomeTagH3"></h3>
         <button class="btnLogOut" id="btnLogOut"> Log Out </button>
       </div>
       <div class="containerWall">
