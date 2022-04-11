@@ -1,6 +1,7 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable import/no-cycle */
 import { singOut } from '../lib/userFirebase.js';
-import { savePost } from '../lib/postFirebase.js';
+import { savePost, getPost } from '../lib/postFirebase.js';
 import { onNavigate } from '../main.js';
 
 export const showHome = () => {
@@ -8,15 +9,38 @@ export const showHome = () => {
     singOut();
     onNavigate('/');
   });
-  const loginHome = document.getElementById('loginHome');
+  const nameHomeTagH3 = document.getElementById('nameHomeTagH3');
   // const emailHome = localStorage.getItem('user');
-  const nameHome = localStorage.getItem('user');
+  const getName = localStorage.getItem('user');
   // loginHome.innerHTML = '';
   const string2 = 'logueado ';
-  loginHome.innerHTML = string2 + nameHome;
-  console.log(nameHome);
+  nameHomeTagH3.innerHTML = string2 + getName;
+  console.log(getName);
   // eslint-disable-next-line no-use-before-define
   postForm();
+  getPosts();
+};
+
+const getPosts = async () => {
+  const containerShowPost = document.querySelector('.containerShowPost');
+  const querySnapshot = await getPost();
+  querySnapshot.forEach(doc => {
+    const postWrite = doc.data();
+    containerShowPost.innerHTML += `
+      <div class='containerPost-Each'>
+      <div>
+      ${postWrite.user}
+      ${postWrite.date.toDate().toLocaleDateString('en-US')}
+      ${postWrite.description}
+      </div>
+      <div>
+      <button class="btnShare" id="btn-Delete" data-id="${postWrite.id}"> Delete </button>
+      <button class="btnShare" id="btn-Edit" data-id="${postWrite.id}"> Edit </button>
+      </div>
+      </div>
+      </br>
+      `;
+  });
 };
 
 export function postForm() {
