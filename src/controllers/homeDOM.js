@@ -41,7 +41,13 @@ const getPosts = async () => {
       // postWrite.uid = doc.uid;
       // console.log(postWrite);
       // console.log(postWrite.uid);
-      containerShowPost.innerHTML += `
+      // MUESTRA BOTONES CUANDO EL ID ES EL MISMO DEL USUARIO
+      // const DeleteEdit_div = document.querySelectorAll('.DeleteEdit_div');
+      console.log(postWrite.uid);
+      console.log(userLogIn);
+      if (postWrite.uid === userLogIn) {
+        console.log('somos iguales, muestro botones');
+        containerShowPost.innerHTML += `
         <div class='containerPost-Each'>
         <div>
         ${postWrite.user}
@@ -50,48 +56,36 @@ const getPosts = async () => {
         <div>
         ${postWrite.description}
         </div>
-        <div class='DeleteEdit_div' name="${postWrite.uid}">
+        <div class="botonesalazar">
         <button class="btnShare" id="btn-Delete" data-id="${postWrite.id}"> Delete </button>
         <button class="btnShare" id="btn-Edit" data-id="${postWrite.id}"> Edit </button>
         </div>
         </div>
         </br>
-        `;
-
-      // MUESTRA BOTONES CUANDO EL ID ES EL MISMO DEL USUARIO
-      // const DeleteEdit_div = document.querySelectorAll('.DeleteEdit_div');
-      const idbtnsPost = document.getElementsByName(postWrite.uid);
-      console.log(idbtnsPost);
-      const idbtnsPostUser = document.getElementsByName(userLogIn);
-      console.log(idbtnsPostUser);
-
-      if (idbtnsPost === idbtnsPostUser) {
-        console.log('somos iguales, muestro botones');
+      `;
       } else {
         console.log('somos diferentes, oculto botones');
-        idbtnsPost.style.display = 'none';
+        containerShowPost.innerHTML += `
+        <div class='containerPost-Each'>
+        <div>
+        ${postWrite.user}
+        <p> Publication: ${postWrite.date.toDate().toUTCString()} </p>
+        </div>
+        <div>
+        ${postWrite.description}
+        </div>
+        </div>
+        </br>
+      `;
       }
-
       // funcion que ELIMINA
-      // const btnDelete = document.querySelectorAll('#btn-Delete');
-      // console.log(btnDelete);
-      // btnDelete.forEach(btn => {
-      //   btn.addEventListener('click', async (e) => {
-      //     console.log(e.target.dataset.uid);
-      //     console.log(userLogIn); // uid del usuario
-      //     // console.log(e.target.postWrite.uid);
-      //     console.log(postWrite.uid); // id del post
-      //     if (userLogIn === postWrite.uid) {
-      //       console.log(e.target.dataset.id);
-      //       console.log(postWrite.uid); // id del post
-      //       console.log('hola me dieron click');
-      //       await deletePost(e.target.dataset.id);
-      //     } else {
-      //       console.log('no puedes borrarme');
-      //       // btnDelete.disabled = true;
-      //     }
-      //   });
-      // });
+      const btnDelete = document.querySelectorAll('#btn-Delete');
+      console.log(btnDelete);
+      btnDelete.forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+          await deletePost(e.target.dataset.id);
+        });
+      });
     });
   });
 };
