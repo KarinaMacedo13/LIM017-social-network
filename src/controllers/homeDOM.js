@@ -1,7 +1,13 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable import/no-cycle */
 import { singOut, getCurrentUser } from '../lib/userFirebase.js';
-import { savePost, onGetPost, deletePost } from '../lib/postFirebase.js';
+import {
+  savePost,
+  onGetPost,
+  deletePost,
+  getPostEdit,
+  updatePost,
+} from '../lib/postFirebase.js';
 import { onNavigate } from '../main.js';
 
 export const showHome = () => {
@@ -26,7 +32,8 @@ export const showHome = () => {
 
 // export const [month, day, year] = [date.getMonth(), date.getDate(), ];
 // export const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSeconds()];
-
+let statusEdit = false;
+let id = '';
 // funcion que LISTA
 const getPosts = async () => {
   const containerShowPost = document.querySelector('.containerShowPost');
@@ -78,26 +85,58 @@ const getPosts = async () => {
         </br>
       `;
       }
-      // funcion que ELIMINA
-      const btnDelete = document.querySelectorAll('#btn-Delete');
-      console.log(btnDelete);
-      btnDelete.forEach(btn => {
-        btn.addEventListener('click', async (e) => {
-          await deletePost(e.target.dataset.id);
-        });
-      });
+      deletePostHome();
+      editPostHome();
     });
   });
 };
 
+function deletePostHome() {
+  // funcion que ELIMINA
+  const btnDelete = document.querySelectorAll('#btn-Delete');
+  console.log(btnDelete);
+  btnDelete.forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      await deletePost(e.target.dataset.id);
+    });
+  });
+}
+
+function editPostHome() {
+  const formPost = document.getElementById('postForm');
+  const descriptionForm = formPost.posWrite;
+  const btnEdit = document.querySelectorAll('#btn-Edit');
+  btnEdit.forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      console.log(e.target.dataset.id);
+      const doc = await getPostEdit(e.target.dataset.id);
+      console.log(doc.data());
+      const descriptionEdit = doc.data();
+      statusEdit = true;
+      id = doc.id;
+      descriptionForm.value = descriptionEdit.description;
+      formPost.btnShare.innerText = 'Update';
+    });
+  });
+}
+
 // FUNCION QUE  GUARDA la informacion que ingresa
-export function postForm() {
+function postForm() {
   const formPost = document.getElementById('postForm');
   formPost.addEventListener('submit', async (e) => {
     e.preventDefault();
     const description = formPost.posWrite;
-    await savePost(description.value);
-
+    if (!statusEdit) {
+      await savePost(description.value);
+    } else {
+      console.log('holi');
+      await updatePost(id, {
+        description: description.value,
+      });
+      statusEdit = false;
+      id = '';
+      formPost.btnShare.innerText = 'Share';
+    }
     formPost.reset(); // limpia el área
     description.focus(); // para que el cursor se posicione ahí
     console.log(description);
