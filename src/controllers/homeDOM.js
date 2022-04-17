@@ -52,9 +52,8 @@ const getPosts = async () => {
       // const DeleteEdit_div = document.querySelectorAll('.DeleteEdit_div');
       console.log(postWrite.uid);
       console.log(userLogIn);
-      if (postWrite.uid === userLogIn) {
-        console.log('somos iguales, muestro botones');
-        containerShowPost.innerHTML += `
+      console.log('somos iguales, muestro botones');
+      containerShowPost.innerHTML += `
         <div class='containerPost-Each'>
         <div>
         ${postWrite.user}
@@ -63,28 +62,15 @@ const getPosts = async () => {
         <div>
         ${postWrite.description}
         </div>
-        <div class="botonesalazar">
+        ${postWrite.uid === userLogIn
+    ? `<div class="botonesalazar">
         <button class="btnShare" id="btn-Delete" data-id="${postWrite.id}"> Delete </button>
         <button class="btnShare" id="btn-Edit" data-id="${postWrite.id}"> Edit </button>
-        </div>
-        </div>
-        </br>
-      `;
-      } else {
-        console.log('somos diferentes, oculto botones');
-        containerShowPost.innerHTML += `
-        <div class='containerPost-Each'>
-        <div>
-        ${postWrite.user}
-        <p> Publication: ${postWrite.date.toDate().toUTCString()} </p>
-        </div>
-        <div>
-        ${postWrite.description}
-        </div>
+        </div>` : ''
+}
         </div>
         </br>
       `;
-      }
       deletePostHome();
       editPostHome();
     });
@@ -95,7 +81,7 @@ function deletePostHome() {
   // funcion que ELIMINA
   const btnDelete = document.querySelectorAll('#btn-Delete');
   console.log(btnDelete);
-  btnDelete.forEach(btn => {
+  btnDelete.forEach((btn) => {
     btn.addEventListener('click', async (e) => {
       await deletePost(e.target.dataset.id);
     });
@@ -106,7 +92,7 @@ function editPostHome() {
   const formPost = document.getElementById('postForm');
   const descriptionForm = formPost.posWrite;
   const btnEdit = document.querySelectorAll('#btn-Edit');
-  btnEdit.forEach(btn => {
+  btnEdit.forEach((btn) => {
     btn.addEventListener('click', async (e) => {
       console.log(e.target.dataset.id);
       const doc = await getPostEdit(e.target.dataset.id);
