@@ -9,6 +9,9 @@ import {
   updatePost,
 } from '../lib/postFirebase.js';
 import { onNavigate } from '../main.js';
+import { showModal } from './modalDOM.js';
+// import { modal } from '../views/modal.js';
+// import { showModal } from './modalDOM.js';
 
 export const showHome = () => {
   document.querySelector('#btnLogOut').addEventListener('click', () => {
@@ -25,9 +28,17 @@ export const showHome = () => {
   const string2 = 'logueado ';
   nameHomeTagH3.innerHTML = string2 + nameLogIn;
   console.log(getName);
+
   // eslint-disable-next-line no-use-before-define
   postForm(); // evento de click en el boton Guardar
   getPosts(); // listar
+  // const btn = document.getElementById('myBtn');
+
+  // const modal2 = document.getElementById('myModal');
+  // btn.addEventListener('click', () => {
+  //   showModal();
+  //   modal2.style.display = 'block';
+  // });
 };
 
 // export const [month, day, year] = [date.getMonth(), date.getDate(), ];
@@ -42,6 +53,9 @@ const getPosts = async () => {
   // const querySnapshot = await getPost();
   onGetPost((querySnapshot) => {
     containerShowPost.innerHTML = '';
+    const options = {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric',
+    };
     querySnapshot.forEach((doc) => {
       const postWrite = doc.data();
       postWrite.id = doc.id;
@@ -57,33 +71,62 @@ const getPosts = async () => {
         <div class='containerPost-Each'>
         <div>
         ${postWrite.user}
-        <p> Publication: ${postWrite.date.toDate().toUTCString()} </p>
+        <p> Publication: ${postWrite.date.toDate().toLocaleDateString('en-US', options)} </p>
         </div>
         <div>
         ${postWrite.description}
         </div>
         ${postWrite.uid === userLogIn
     ? `<div class="botonesalazar">
-        <button class="btnShare" id="btn-Delete" data-id="${postWrite.id}"> Delete </button>
-        <button class="btnShare" id="btn-Edit" data-id="${postWrite.id}"> Edit </button>
-        </div>` : ''
-}
+        <i class="fa-regular fa-trash"></i>
+        <i class="fa-regular fa-pencil"></i>
+        <button class="btnShare btnDelete" data-id="${postWrite.id}"> Delete </button>
+        <button class="btnShare btnEdit" data-id="${postWrite.id}"> Edit </button>
+        </div>` : ''}
+        <i class="fa-solid fa-heart" id="heart"> </i> 
+        <p class="likes"> 1 </p>
         </div>
         </br>
       `;
       deletePostHome();
       editPostHome();
+      // postLike();
     });
   });
 };
 
+// function postLike() {
+//   const btnHeart = document.querySelectorAll('.heart');
+//   btnHeart.forEach((btn) => {
+//     btnHeart.addEventListener('click', () => {
+//       console.log('me dieron like');
+//     });
+//   });
+// }
+
 function deletePostHome() {
   // funcion que ELIMINA
-  const btnDelete = document.querySelectorAll('#btn-Delete');
-  console.log(btnDelete);
+  const btnYes = document.querySelector('#btnYes');
+  const btnCancel = document.querySelector('#btnCancel');
+  const btnDelete = document.querySelectorAll('.btnDelete');
+  const modal = document.getElementById('myModal');
+  // const modal2 = document.querySelector('.modal-content2');
   btnDelete.forEach((btn) => {
-    btn.addEventListener('click', async (e) => {
-      await deletePost(e.target.dataset.id);
+    btn.addEventListener('click', (e) => {
+      const postDeleteYes = e.target.dataset.id;
+      modal.style.display = 'block';
+      showModal();
+      console.log(e.target);
+      btnYes.addEventListener('click', async () => {
+        await deletePost(postDeleteYes);
+        // modal.style.display = 'none';
+        // modal2.style.display = 'block';
+        // alert('Eliminado exitosamente');
+        modal.style.display = 'none';
+      });
+      btnCancel.addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
     });
   });
 }
@@ -91,7 +134,7 @@ function deletePostHome() {
 function editPostHome() {
   const formPost = document.getElementById('postForm');
   const descriptionForm = formPost.posWrite;
-  const btnEdit = document.querySelectorAll('#btn-Edit');
+  const btnEdit = document.querySelectorAll('.btnEdit');
   btnEdit.forEach((btn) => {
     btn.addEventListener('click', async (e) => {
       console.log(e.target.dataset.id);

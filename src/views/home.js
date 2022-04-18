@@ -17,6 +17,18 @@ export const home = () => {
         <div class="containerShowPost">
         </div>
       </div>
+      <button id="myBtn">Open Modal</button>
+      <div id="myModal" class="modal">
+          <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Are you sure to delete?</p>
+          <button id="btnYes">YES</button>
+          <button id="btnCancel">CANCEL</button>
+          </div>
+          <div class="modal-content2">
+          <p>ELIMINADO</p>
+          </div>
+      </div>
   </section>`;
   return postWrite;
 };

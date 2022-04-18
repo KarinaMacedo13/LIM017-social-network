@@ -4,6 +4,10 @@
   text-decoration: none;
   box-sizing: border-box;
 }
+body {
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .container {
   height: 100vh;
   background: linear-gradient(180deg, #5f00ff 0%, #4cb7eb 100%);

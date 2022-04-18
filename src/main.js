@@ -5,6 +5,8 @@ import { login } from './views/login.js';
 import { showRegister } from './controllers/registerDOM.js';
 import { showLogin } from './controllers/loginDOM.js';
 import { showHome } from './controllers/homeDOM.js';
+// import { modal } from './views/modal.js';
+// import { showModal } from './controllers/modalDOM.js';
 
 const rootDiv = document.getElementById('root');
 const routes = {
