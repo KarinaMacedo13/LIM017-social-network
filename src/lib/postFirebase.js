@@ -11,6 +11,8 @@ export const savePost = (description) => dataBase.collection('post').doc().set({
   description,
   date: new Date(),
   dateTime: firebase.firestore.Timestamp.fromDate(new Date()),
+  likesArray: [],
+  likesCount: 0,
 });
 
 export const onGetPost = (callback) => dataBase.collection('post').orderBy('dateTime', 'desc').onSnapshot(callback);
@@ -21,3 +23,7 @@ export const updatePost = (id, updatedPost) => dataBase.collection('post').doc(i
 // const q = query(collection(db, 'publicaciones'), orderBy('dateTime', 'desc'));
 
 // dataBase.collection('post').orderBy('dateTime', 'desc');
+// eslint-disable-next-line arrow-body-style
+export const arrayU = (data) => { return firebase.firestore.FieldValue.arrayUnion(data); };
+// eslint-disable-next-line arrow-body-style
+export const arrayR = (data) => { return firebase.firestore.FieldValue.arrayRemove(data); };
