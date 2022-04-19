@@ -8,6 +8,7 @@ export const home = () => {
         <h3 id="nameHomeTagH3"></h3>
         <button class="btnLogOut" id="btnLogOut"> Log Out </button>
       </div>
+
       <div class="containerWall">
         <form class="containerPost" id="postForm">
           <p class="tillePost" >Create Post</p>
