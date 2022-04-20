@@ -89,7 +89,11 @@ const getPosts = async () => {
         </div>
         </br>
       `;
-      openModelPost();
+      const btnOpenPost = document.getElementById('btnPost');
+      btnOpenPost.addEventListener('click', () => {
+        openModelPost();
+      });
+      // aca
       deletePostHome();
       editPostHome();
       likesPost();
@@ -138,10 +142,11 @@ function editPostHome() {
   const formPost = document.getElementById('postForm');
   const descriptionForm = formPost.posWrite;
   const btnEdit = document.querySelectorAll('.btnEdit');
+  // const modalPost = document.getElementById('myModalPost');
   btnEdit.forEach((btn) => {
     btn.addEventListener('click', async (e) => {
       console.log(e.target.dataset.id);
-      // openModelEdit();
+      openModelPost();
       const doc = await getPostEdit(e.target.dataset.id);
       console.log(doc.data());
       const descriptionEdit = doc.data();
@@ -149,6 +154,7 @@ function editPostHome() {
       id = doc.id;
       descriptionForm.value = descriptionEdit.description;
       formPost.btnShare.innerText = 'Update';
+      // modalPost.style.display = 'none';
     });
   });
 }
@@ -195,6 +201,7 @@ function postForm() {
       });
       statusEdit = false;
       id = '';
+      modalPost.style.display = 'none';
       formPost.btnShare.innerText = 'Share';
     }
     formPost.reset(); // limpia el área
@@ -202,16 +209,23 @@ function postForm() {
     console.log(description);
   });
 }
+
 // FUNCION QUE ABRE EL MODAL, A GUARDAR UN POST
 function openModelPost() {
-  const btnOpenPost = document.getElementById('btnPost');
   const modalPost = document.getElementById('myModalPost');
-
-  btnOpenPost.addEventListener('click', () => {
-    modalPost.style.display = 'block';
-    showModal();
-  });
+  modalPost.style.display = 'block';
+  showModal();
 }
+// FUNCION QUE ABRE EL MODAL, A GUARDAR UN POST
+// function openModelPost() {
+//   const btnOpenPost = document.getElementById('btnPost');
+//   const modalPost = document.getElementById('myModalPost');
+
+//   btnOpenPost.addEventListener('click', () => {
+//     modalPost.style.display = 'block';
+//     showModal();
+//   });
+// }
 
 // FUNCION QUE ABRE EL MODAL, A EDITAR UN POST
 // function openModelEdit() {
