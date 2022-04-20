@@ -144,3 +144,30 @@
         font-size: 0.9em;
     }
 }
+
+.poster {
+    /* width: 90%;
+    height: 50%; */
+    width: 80%;
+    display: grid;
+    gap: 4%;
+    background: white;
+    border-radius: 20px;
+    font-family: "Telex", sans-serif;
+    padding: 3%;
+    box-shadow: 1px 1px 1px grey;
+    position: relative;
+    margin: 5%;
+}
+
+.postWrite1{
+    width: 100%;
+    height: 70%;
+    border: 0;
+    outline: none;
+    text-decoration: none;
+    border: solid 1px rgb(255, 250, 250);
+    /* border: solid 1px rgb(201, 200, 200); */
+    padding: 5px;
+    cursor: pointer;
+}

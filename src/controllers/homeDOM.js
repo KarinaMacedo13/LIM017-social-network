@@ -80,8 +80,8 @@ const getPosts = async () => {
         </div>
         ${postWrite.uid === userLogIn
     ? `<div class="botonesalazar">
-        <i class="fa-regular fa-trash"></i>
-        <i class="fa-regular fa-pencil"></i>
+        <!-- <i class="fa-regular fa-trash"></i>
+        <i class="fa-regular fa-pencil"></i> -->
         <button class="btnShare btnDelete" data-id="${postWrite.id}"> Delete </button>
         <button class="btnShare btnEdit" data-id="${postWrite.id}"> Edit </button>
         </div>` : ''}
@@ -89,6 +89,7 @@ const getPosts = async () => {
         </div>
         </br>
       `;
+      openModelPost();
       deletePostHome();
       editPostHome();
       likesPost();
@@ -140,6 +141,7 @@ function editPostHome() {
   btnEdit.forEach((btn) => {
     btn.addEventListener('click', async (e) => {
       console.log(e.target.dataset.id);
+      // openModelEdit();
       const doc = await getPostEdit(e.target.dataset.id);
       console.log(doc.data());
       const descriptionEdit = doc.data();
@@ -179,11 +181,13 @@ function likesPost() {
 // FUNCION QUE  GUARDA la informacion que ingresa
 function postForm() {
   const formPost = document.getElementById('postForm');
+  const modalPost = document.getElementById('myModalPost');
   formPost.addEventListener('submit', async (e) => {
     e.preventDefault();
     const description = formPost.posWrite;
     if (!statusEdit) {
       await savePost(description.value);
+      modalPost.style.display = 'none';
     } else {
       console.log('holi');
       await updatePost(id, {
@@ -198,3 +202,24 @@ function postForm() {
     console.log(description);
   });
 }
+// FUNCION QUE ABRE EL MODAL, A GUARDAR UN POST
+function openModelPost() {
+  const btnOpenPost = document.getElementById('btnPost');
+  const modalPost = document.getElementById('myModalPost');
+
+  btnOpenPost.addEventListener('click', () => {
+    modalPost.style.display = 'block';
+    showModal();
+  });
+}
+
+// FUNCION QUE ABRE EL MODAL, A EDITAR UN POST
+// function openModelEdit() {
+//   const btnOpenPost = document.getElementsByClassName('btnEdit');
+//   const modalPost = document.getElementById('myModalPost');
+
+//   btnOpenPost.addEventListener('click', () => {
+//     modalPost.style.display = 'block';
+//     showModal();
+//   });
+// }
