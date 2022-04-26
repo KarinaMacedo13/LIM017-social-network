@@ -1,4 +1,4 @@
-import { singOut, getCurrentUser } from '../lib/firebaseUser.js';
+import { singOutFirebase, getCurrentUser } from '../lib/firebaseUser.js';
 // import {
 //   savePost,
 //   onGetPost,
@@ -13,7 +13,7 @@ import { onNavigate } from '../main.js';
 
 export const showHome = () => {
   document.querySelector('#btnLogOut').addEventListener('click', () => {
-    singOut();
+    singOutFirebase();
     onNavigate('/');
   });
   const nameLogIn = getCurrentUser().displayName;
