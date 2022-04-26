@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 /* eslint-disable import/no-unresolved */
 import {
   getAuth,
@@ -8,15 +9,14 @@ import {
   updateProfile,
   sendEmailVerification,
   signOut,
-} from 'https://www.gstatic.com/firebasejs/9.6.11/firebase-auth.js';
+} from './firebaseLibraries.js';
 import { app } from './firebaseConfig.js';
 
 const auth = getAuth(app);
 
 // FUNCION DE REGISTRO CON EMAIL-----------------------------------------------
 export const registerFirebase = (email, password) => {
-  const registerBeFit = createUserWithEmailAndPassword(auth, email, password);
-  return registerBeFit;
+  return createUserWithEmailAndPassword(auth, email, password);
 };
 
 // REGISTRO CON GOOGLE
@@ -37,19 +37,6 @@ export const loginFirebase = (email, password) => {
 // OBTENER EL USUARIO ACTUAL con sus propiedades
 export const getCurrentUser = () => {
   const user = auth.currentUser;
-  if (user !== null) {
-    // The user object has basic properties such as display name, email, etc.
-    // const displayName = user.displayName;
-    // const email = user.email;
-    // const photoURL = user.photoURL;
-    // const emailVerified = user.emailVerified;
-
-    // The user's ID, unique to the Firebase project. Do NOT use
-    // this value to authenticate with your backend server, if
-    // you have one. Use User.getToken() instead.
-    // onst uid = user.uid;
-    // return user;
-  }
   return user;
 };
 
@@ -73,10 +60,11 @@ export const emailVerification = () => {
     .then((result) => {
       console.log(result);
     // Email sent.
-    }).catch((error) => {
-      console.log(error);
-    // An error happened.
     });
+  // .catch((error) => {
+  //   console.log(error);
+  // // An error happened.
+  // });
 };
 
 // SIGN OUT - CERRAR SESIÓN
