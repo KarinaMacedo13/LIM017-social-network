@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 /* eslint-disable import/no-unresolved */
 import {
   getAuth,
@@ -8,15 +9,14 @@ import {
   updateProfile,
   sendEmailVerification,
   signOut,
-} from './firebaseImportExport.js';
+} from './firebaseLibraries.js';
 import { app } from './firebaseConfig.js';
 
 const auth = getAuth(app);
 
 // FUNCION DE REGISTRO CON EMAIL-----------------------------------------------
 export const registerFirebase = (email, password) => {
-  const registerBeFit = createUserWithEmailAndPassword(auth, email, password);
-  return registerBeFit;
+  return createUserWithEmailAndPassword(auth, email, password);
 };
 
 // REGISTRO CON GOOGLE
