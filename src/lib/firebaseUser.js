@@ -42,39 +42,28 @@ export const getCurrentUser = () => {
 
 // ACTUALIZA EL PERFIL DEL USUARIO
 export const updaterUserProfile = (name) => {
-  updateProfile(auth.currentUser, {
+  return updateProfile(auth.currentUser, {
     displayName: name,
     // photoURL: 'https://example.com/jane-q-user/profile.jpg',
-  }).then(() => {
-  // Profile updated!
-    alert('Registro exitoso');
-  }).catch((error) => {
-  // An error occurred
-  // ...
   });
+  // .then(() => {
+  // // Profile updated!
+  //   alert('Registro exitoso');
+  // }).catch((error) => {
+  // // An error occurred
+  // // ...
+  // });
 };
 
 // VERIFICAR REGISTRO ENVIANDO UN CORREO AL EMAIL
 export const emailVerification = () => {
-  return sendEmailVerification(auth.currentUser);
-  // .then((result) => {
-  //   console.log(result);
-  // // Email sent.
-  // });
-  // .catch((error) => {
-  //   console.log(error);
-  // // An error happened.
-  // });
+  return sendEmailVerification(auth.currentUser).then(() => {});
 };
 
 // SIGN OUT - CERRAR SESIÓN
 export const singOutFirebase = () => {
-  return signOut(auth);
-  // .then((result) => {
-  //   console.log(result);
-  //   console.log('cerrar');
-  // })
-  // .catch((error) => {
+  return signOut(auth).then(() => {})
+    .catch((error) => error);
   //   console.log(error);
   // });
 };
