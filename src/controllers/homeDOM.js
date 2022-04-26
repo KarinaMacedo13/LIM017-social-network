@@ -31,6 +31,12 @@ export const showHome = () => {
   nameHomeTagH3.innerHTML = string2 + nameLogIn;
   console.log(getName);
 
+  const btnOpenPost = document.getElementById('btnPost');
+  btnOpenPost.addEventListener('click', () => {
+    console.log('HOLAAAAAAAAAA');
+    openModelPost();
+  });
+
   // eslint-disable-next-line no-use-before-define
   postForm(); // evento de click en el boton Guardar
   getPosts(); // listar
@@ -50,6 +56,7 @@ let id = '';
 // funcion que LISTA
 const getPosts = async () => {
   const containerShowPost = document.querySelector('.containerShowPost');
+  console.log(containerShowPost);
   const userLogIn = getCurrentUser().uid;
   console.log(userLogIn);
   // const querySnapshot = await getPost();
@@ -89,10 +96,6 @@ const getPosts = async () => {
         </div>
         </br>
       `;
-      const btnOpenPost = document.getElementById('btnPost');
-      btnOpenPost.addEventListener('click', () => {
-        openModelPost();
-      });
       // aca
       deletePostHome();
       editPostHome();

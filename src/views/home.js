@@ -34,7 +34,6 @@ export const home = () => {
         <div class="containerShowPost">
         </div>
       </div>
-      <button id="myBtn">Open Modal</button>
       <div id="myModal" class="modal">
           <div class="modal-content">
           <span class="closeDelete">&times;</span>
