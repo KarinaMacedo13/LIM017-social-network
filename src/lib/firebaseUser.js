@@ -44,7 +44,7 @@ export const getCurrentUser = () => {
 export const updaterUserProfile = (name) => {
   updateProfile(auth.currentUser, {
     displayName: name,
-    photoURL: 'https://example.com/jane-q-user/profile.jpg',
+    // photoURL: 'https://example.com/jane-q-user/profile.jpg',
   }).then(() => {
   // Profile updated!
     alert('Registro exitoso');
@@ -56,11 +56,11 @@ export const updaterUserProfile = (name) => {
 
 // VERIFICAR REGISTRO ENVIANDO UN CORREO AL EMAIL
 export const emailVerification = () => {
-  sendEmailVerification(auth.currentUser)
-    .then((result) => {
-      console.log(result);
-    // Email sent.
-    });
+  return sendEmailVerification(auth.currentUser);
+  // .then((result) => {
+  //   console.log(result);
+  // // Email sent.
+  // });
   // .catch((error) => {
   //   console.log(error);
   // // An error happened.
@@ -68,13 +68,13 @@ export const emailVerification = () => {
 };
 
 // SIGN OUT - CERRAR SESIÓN
-export const singOut = () => {
-  signOut(auth)
-    .then((result) => {
-      console.log(result);
-      console.log('cerrar');
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+export const singOutFirebase = () => {
+  return signOut(auth);
+  // .then((result) => {
+  //   console.log(result);
+  //   console.log('cerrar');
+  // })
+  // .catch((error) => {
+  //   console.log(error);
+  // });
 };
