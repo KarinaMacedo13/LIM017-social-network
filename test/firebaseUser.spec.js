@@ -73,6 +73,12 @@ describe('singOut', () => {
   it('Debería retornar una función', () => {
     expect(singOutFirebase()).toEqual(signOut());
   });
+  it('No deberia cerrar sesion', () => {
+    singOutFirebase()
+      .catch(() => {
+        expect(singOutFirebase).toEqual('cerrar sesion');
+      });
+  });
 });
 
 describe('getCurrentUser', () => {

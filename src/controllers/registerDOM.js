@@ -28,7 +28,14 @@ export const showRegister = () => {
         .then((userCredential) => {
           const user = userCredential.user;
           emailVerification(); // envia msj al correo
-          updaterUserProfile(nameValue);
+          updaterUserProfile(nameValue)
+            .then(() => {
+            // Profile updated!
+              alert('Registro exitoso');
+            }).catch((error) => {
+            // An error occurred
+            // ...
+            });
           onNavigate('/');
           console.log(user);
         })
