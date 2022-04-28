@@ -7,8 +7,8 @@ import {
   deletePost,
   getPostEdit,
   updatePost,
-//   arrayR,
-//   arrayU,
+  arrayR,
+  arrayU,
 } from '../lib/firebasePost.js';
 import { onNavigate } from '../main.js';
 import { showModal } from './modalDOM.js';
@@ -26,6 +26,10 @@ export const showHome = () => {
   nameHomeTagH3.innerHTML = string2 + nameLogIn;
   postForm();
   getPosts();
+  const btnOpenPost = document.getElementById('btnPost');
+  btnOpenPost.addEventListener('click', () => {
+    openModelPost();
+  });
 };
 
 let statusEdit = false;
@@ -68,18 +72,14 @@ const getPosts = async () => {
         <button class="btnShare btnDelete" data-id="${postWrite.id}"> Delete </button>
         <button class="btnShare btnEdit" data-id="${postWrite.id}"> Edit </button>
         </div>` : ''}
-        <!-- <button class="likes" data-id='${doc.id}'><i class="fa-solid fa-heart"></i>${postWrite.likesCount} Like</button> -->
+        <button class="likes" data-id='${doc.id}'><i class="fa-solid fa-heart"></i>${postWrite.likesCount} Like</button>
         </div>
         </br>
       `;
-      const btnOpenPost = document.getElementById('btnPost');
-      btnOpenPost.addEventListener('click', () => {
-        openModelPost();
-      });
       // aca
       deletePostHome();
       editPostHome();
-      // likesPost();
+      likesPost();
       // postLike();
     });
   });
@@ -129,6 +129,31 @@ function editPostHome() {
       descriptionForm.value = descriptionEdit.description;
       formPost.btnShare.innerText = 'Update';
       // modalPost.style.display = 'none';
+    });
+  });
+}
+
+function likesPost() {
+  // const containerShowPost = document.querySelector('.containerShowPost');
+  const buttonLike = document.querySelectorAll('.likes');
+  buttonLike.forEach((btn) => {
+    btn.addEventListener('click', async (e) => {
+      const user = getCurrentUser().uid;
+      const doc = await getPostEdit(e.target.dataset.id);
+      id = doc.id;
+      const docData = doc.data();
+      const likesN = docData.likesCount;
+      if (docData.likesArray.includes(user)) {
+        await updatePost(id, {
+          likesArray: arrayR(user),
+          likesCount: likesN - 1,
+        });
+      } else {
+        await updatePost(id, {
+          likesArray: arrayU(user),
+          likesCount: likesN + 1,
+        });
+      }
     });
   });
 }
