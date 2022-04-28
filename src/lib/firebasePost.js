@@ -22,10 +22,8 @@ export const savePost = (description) => {
   });
 };
 // FUNCION QUE LISTA
-// const q = query(collection(dataBase, 'post'), orderBy('dateTime', 'desc'));
-
-// export const onGetPost = (callback) => onSnapshot(query(collection(dataBase, 'post'), callback, orderBy('dateTime', 'desc')));
-export const onGetPost = (callback) => onSnapshot(collection(dataBase, 'post'), callback);
+const q = query(collection(dataBase, 'post'), orderBy('dateTime', 'desc'));
+export const onGetPost = (querySnapshot) => onSnapshot(q, querySnapshot);
 
 // FUNCION PARA ELIMINAR
 export const deletePost = (id) => deleteDoc(doc(dataBase, 'post', id));
