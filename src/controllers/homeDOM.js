@@ -68,7 +68,7 @@ const getPosts = async () => {
         <button class="btnShare btnDelete" data-id="${postWrite.id}"> Delete </button>
         <button class="btnShare btnEdit" data-id="${postWrite.id}"> Edit </button>
         </div>` : ''}
-        <button class="likes" data-id='${doc.id}'><i class="fa-solid fa-heart"></i>${postWrite.likesCount} Like</button>
+        <!-- <button class="likes" data-id='${doc.id}'><i class="fa-solid fa-heart"></i>${postWrite.likesCount} Like</button> -->
         </div>
         </br>
       `;
