@@ -12,13 +12,15 @@ export const register = () => {
         <div class="signUp-container">
           <div class="signUpContent">
             <h1>Sign up</h1>
-            <label class="labels" for="fullName"> Name </label>
+            <label class="labels" for="fullName"> Full Name </label>
             <input class="input" id="name" type="text" placeholder=" "/>
-            <label class="labels" for="emailSignUp"> Email </label>
+            <label class="labels" for="emailSignUp"> Email Address</label>
             <input class="input" id="emailSignUp" type="email" placeholder=" "/>
             <label class="labels" for="passwordSignUp"> Password </label>
             <input class="input" id="passwordSignUp" type="password" placeholder=" " />
-            <button class="btnSignupLogin" id="btnRegister">Sign Up</button><br>
+            <button class="btnSignupLogin" id="btnRegister">Sign Up</button>
+            <input class="input" type="text" placeholder="" readonly />
+            <label class="labelOr">OR</label>
             <button class="btnGoogle" id="btnSignUpGoogle"> <span class="fa-brands fa-google"> </span> Sign Up with Google</button>
             <p class="messageSignUpError"></p>
             <p class="messageHaveAnAccount">Already have an account?</p>

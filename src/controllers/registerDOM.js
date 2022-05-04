@@ -1,3 +1,6 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-alert */
 /* eslint-disable import/no-cycle */
 import {
   registerFirebase, registerAndLoginGoogle, updaterUserProfile, emailVerification,
@@ -31,13 +34,12 @@ export const showRegister = () => {
           updaterUserProfile(nameValue)
             .then(() => {
             // Profile updated!
-              alert('Registro exitoso');
+              alert('Successful registration');
             }).catch((error) => {
             // An error occurred
             // ...
             });
           onNavigate('/');
-          console.log(user);
         })
         .catch((error) => {
           messageSignUpError.innerHTML = '';
@@ -51,10 +53,7 @@ export const showRegister = () => {
             messageSignUpError.innerHTML = 'The provided email is already in use by an existing user. Each user must have a unique email.';
           }
           const errorCode = error.code;
-          console.log(errorCode);
           const errorMessage = error.message;
-          console.log(errorMessage);
-          // messageSignUpError.innerHTML = errorCode;
         });
     }
   });

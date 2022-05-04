@@ -1,6 +1,6 @@
+/* eslint-disable func-names */
 export const showModal = () => {
 // Get the button that opens the modal
-  // const btn = document.getElementById('myBtn');
   // Get the modal
   const modal = document.getElementById('myModal');
   const modalPost = document.getElementById('myModalPost');
@@ -24,8 +24,4 @@ export const showModal = () => {
       modal.style.display = 'none';
     }
   };
-  // When the user clicks the button, open the modal
-  // btn.addEventListener('click', () => {
-  //   modal2.style.display = 'block';
-  // });
 };
