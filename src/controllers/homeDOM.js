@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-use-before-define */
 import { singOutFirebase, getCurrentUser } from '../lib/firebaseUser.js';
@@ -14,15 +15,14 @@ import { onNavigate } from '../main.js';
 import { showModal } from './modalDOM.js';
 
 export const showHome = () => {
-  document.querySelector('#btnLogOut').addEventListener('click', () => {
+  document.querySelector('.LogOut').addEventListener('click', () => {
     singOutFirebase();
     onNavigate('/');
   });
   const nameLogIn = getCurrentUser().displayName;
   const uidLogIn = getCurrentUser().uid;
-  console.log(uidLogIn);
   const nameHomeTagH3 = document.getElementById('nameHomeTagH3');
-  const string2 = 'logueado ';
+  const string2 = '👋 Hola ';
   nameHomeTagH3.innerHTML = string2 + nameLogIn;
   postForm();
   getPosts();
@@ -38,8 +38,6 @@ let id = '';
 const getPosts = async () => {
   const containerShowPost = document.querySelector('.containerShowPost');
   const userLogIn = getCurrentUser().uid;
-  console.log(userLogIn);
-  // const querySnapshot = await getPost();
   onGetPost((querySnapshot) => {
     containerShowPost.innerHTML = '';
     const options = {
@@ -48,39 +46,32 @@ const getPosts = async () => {
     querySnapshot.forEach((doc) => {
       const postWrite = doc.data();
       postWrite.id = doc.id;
-      // postWrite.uid = doc.uid;
-      // console.log(postWrite);
-      // console.log(postWrite.uid);
       // MUESTRA BOTONES CUANDO EL ID ES EL MISMO DEL USUARIO
-      // const DeleteEdit_div = document.querySelectorAll('.DeleteEdit_div');
-      console.log(postWrite.uid);
-      console.log(userLogIn);
-      console.log('somos iguales, muestro botones');
       containerShowPost.innerHTML += `
-        <div class='containerPost-Each'>
-        <div>
-        ${postWrite.user}
-        <p> Publication: ${postWrite.date.toDate().toLocaleDateString('en-US', options)} </p>
-        </div>
-        <div>
-        ${postWrite.description}
-        </div>
-        ${postWrite.uid === userLogIn
-    ? `<div class="botonesalazar">
-        <!-- <i class="fa-regular fa-trash"></i>
-        <i class="fa-regular fa-pencil"></i> -->
-        <button class="btnShare btnDelete" data-id="${postWrite.id}"> Delete </button>
-        <button class="btnShare btnEdit" data-id="${postWrite.id}"> Edit </button>
+      <div class='containerPost-Each'>
+      <div class="infoPost" >
+      <div class="btnPosts">
+      <p class="userPost"> ${postWrite.user} </p>
+      ${postWrite.uid === userLogIn
+    ? `<div class="btnED">
+          <button class="btnPostED btnDelete" data-id="${postWrite.id}"> <i class="fa-solid fa-trash"></i> Delete | </button>
+          <button class="btnPostED btnEdit" data-id="${postWrite.id}"> <i class="fa-solid fa-pen-to-square"></i> Edit </button>
         </div>` : ''}
-        <button class="likes" data-id='${doc.id}'><i class="fa-solid fa-heart"></i>${postWrite.likesCount} Like</button>
         </div>
-        </br>
+      <p class="dataPost"> Publication: ${postWrite.date.toDate().toLocaleDateString('en-US', options)} </p>
+      </div>
+      <div>
+      <p class="desciption Post"> ${postWrite.description} </p>
+      </div>
+      <div class="likespost">
+      <button class="likes" data-id='${doc.id}'><i class="fa-solid fa-heart"></i> ${postWrite.likesCount} Likes </button>
+      </div>
+      </div>
+      </br>
       `;
-      // aca
       deletePostHome();
       editPostHome();
       likesPost();
-      // postLike();
     });
   });
 };
@@ -91,18 +82,13 @@ function deletePostHome() {
   const btnCancel = document.querySelector('#btnCancel');
   const btnDelete = document.querySelectorAll('.btnDelete');
   const modal = document.getElementById('myModal');
-  // const modal2 = document.querySelector('.modal-content2');
   btnDelete.forEach((btn) => {
     btn.addEventListener('click', (e) => {
       const postDeleteYes = e.target.dataset.id;
       modal.style.display = 'block';
       showModal();
-      console.log(e.target);
       btnYes.addEventListener('click', async () => {
         await deletePost(postDeleteYes);
-        // modal.style.display = 'none';
-        // modal2.style.display = 'block';
-        // alert('Eliminado exitosamente');
         modal.style.display = 'none';
       });
       btnCancel.addEventListener('click', () => {
@@ -116,25 +102,20 @@ function editPostHome() {
   const formPost = document.getElementById('postForm');
   const descriptionForm = formPost.posWrite;
   const btnEdit = document.querySelectorAll('.btnEdit');
-  // const modalPost = document.getElementById('myModalPost');
   btnEdit.forEach((btn) => {
     btn.addEventListener('click', async (e) => {
-      console.log(e.target.dataset.id);
       openModelPost();
       const doc = await getPostEdit(e.target.dataset.id);
-      console.log(doc.data());
       const descriptionEdit = doc.data();
       statusEdit = true;
       id = doc.id;
       descriptionForm.value = descriptionEdit.description;
       formPost.btnShare.innerText = 'Update';
-      // modalPost.style.display = 'none';
     });
   });
 }
 
 function likesPost() {
-  // const containerShowPost = document.querySelector('.containerShowPost');
   const buttonLike = document.querySelectorAll('.likes');
   buttonLike.forEach((btn) => {
     btn.addEventListener('click', async (e) => {
@@ -168,7 +149,6 @@ function postForm() {
       await savePost(description.value);
       modalPost.style.display = 'none';
     } else {
-      console.log('holi');
       await updatePost(id, {
         description: description.value,
       });
@@ -179,7 +159,6 @@ function postForm() {
     }
     formPost.reset(); // limpia el área
     description.focus(); // para que el cursor se posicione ahí
-    console.log(description);
   });
 }
 

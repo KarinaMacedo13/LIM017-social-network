@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable import/no-cycle */
 import { home } from './views/home.js';
 import { register } from './views/register.js';
@@ -19,26 +20,18 @@ export const onNavigate = (pathname) => {
     window.location.origin + pathname,
   );
   rootDiv.innerHTML = routes[pathname]();
-  switch (pathname) {
-    case '/':
-      showLogin();
-      break;
-    case '/register':
-      showRegister();
-      break;
-    case '/home':
-      showHome();
-      break;
-    default:
-      document.getElementById('root').innerHTML = '404 not found';
-      break;
-  }
+  route(pathname);
 };
 // Flechas del navegador(atras y adelante)
 window.onpopstate = () => {
   const component = window.location.pathname;
   rootDiv.innerHTML = routes[component]();
-  switch (component) {
+  route(component);
+};
+onNavigate('/');
+
+function route(views) {
+  switch (views) {
     case '/':
       showLogin();
       break;
@@ -52,8 +45,4 @@ window.onpopstate = () => {
       document.getElementById('root').innerHTML = '404 not found';
       break;
   }
-};
-onNavigate('/');
-// export function registerToHome() {
-//   onNavigate('/home');
-// }
+}

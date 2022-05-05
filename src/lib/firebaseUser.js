@@ -44,15 +44,7 @@ export const getCurrentUser = () => {
 export const updaterUserProfile = (name) => {
   return updateProfile(auth.currentUser, {
     displayName: name,
-    // photoURL: 'https://example.com/jane-q-user/profile.jpg',
   });
-  // .then(() => {
-  // // Profile updated!
-  //   alert('Registro exitoso');
-  // }).catch((error) => {
-  // // An error occurred
-  // // ...
-  // });
 };
 
 // VERIFICAR REGISTRO ENVIANDO UN CORREO AL EMAIL
@@ -62,8 +54,5 @@ export const emailVerification = () => {
 
 // SIGN OUT - CERRAR SESIÓN
 export const singOutFirebase = () => {
-  return signOut(auth).then(() => {})
-    .catch((error) => error);
-  //   console.log(error);
-  // });
+  return signOut(auth).then(() => {});
 };

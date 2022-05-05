@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-unused-vars */
 /* eslint-disable import/no-cycle */
 import { loginFirebase, registerAndLoginGoogle } from '../lib/firebaseUser.js';
 import { onNavigate } from '../main.js';
@@ -17,13 +19,11 @@ export const showLogin = () => {
       loginFirebase(emailLogIn, passwordLogIn)
         .then((userCredential) => {
           const user = userCredential.user;
-          // getData();
           if (user.emailVerified) {
             onNavigate('/home');
           } else {
-            alert('Vericar tu cuenta');
+            alert('Verify your account');
           }
-          console.log(userCredential);
         })
         .catch((error) => {
           messageLogIn.innerHTML = '';
@@ -37,9 +37,7 @@ export const showLogin = () => {
             messageLogIn.innerHTML = 'There is no existing user record corresponding to the provided identifier.';
           }
           const errorCode = error.code;
-          console.log(errorCode);
           const errorMessage = error.message;
-          // messageLogIn.innerHTML = errorCode;
         });
     }
   });
@@ -49,7 +47,6 @@ export const showLogin = () => {
     registerAndLoginGoogle()
       .then(() => {
         onNavigate('/home');
-        // getData();
       });
   });
   // BOTON QUE REDIRECCIONA AL REGISTER -----------------------------------------------

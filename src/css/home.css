@@ -1,80 +1,93 @@
-.home {
-    min-height: 100vh;
-    margin: 0px;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 10% 90%;
-    grid-template-areas: "navWall" "wall";
-    background-color: #F1EFEF;
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
 }
 
-.botonesalazar{
-    display:block;
+.home {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 8% 82%;
+    grid-template-areas: "nav" "head" "post";
 }
 
 .navWall{
-    grid-area: navWall;
-    background-color: #5f00ff;
+    grid-area: nav;
+    padding: 2%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #5f00ff 0%, #4cb7eb 100%);
+    color: white;
 }
 
-.logoWall{
-    position: relative;
-    width: 0%;
+.nav {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav .logoWall {
+    width: 8em;
+}
+
+.navMenu {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 3em;
+}
+
+.navItem {
+    text-decoration: none;
+    font-family: "Telex", sans-serif;
+    color: white;
+}
+
+.navItem:hover {
+    color:#ffb624;
+}
+
+.headWall {
+    grid-area: head;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1%;
+}
+
+.headWall h3 {
+    font-weight: bold;
+    font-size: 1.2em;
+    font-family: "Telex", sans-serif;
+    margin-left: 10%;
 }
 
 .containerWall{
-    grid-area: wall;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
+    height: 100vh;
+    grid-area: post;
 }
 
-.containerPost {
-    /* width: 90%;
-    height: 50%; */
+.postHead{
     width: 80%;
     display: grid;
     gap: 4%;
     background: white;
-    border-radius: 20px;
+    border-radius: 15px;
     font-family: "Telex", sans-serif;
     padding: 3%;
+    border: solid 1px rgb(201, 200, 200);
     box-shadow: 1px 1px 1px grey;
     position: relative;
-    margin: 5%;
+    margin: 2% 5% 3% 5%;
 }
 
-.tillePost{
-    font-family: "Telex", sans-serif;
-    font-size: 150%;
-    color: #4bc3fe;
-}
-
-.postWrite{
-    width: 100%;
-    border: 0;
-    outline: none;
-    text-decoration: none;
-    border: solid 1px rgb(201, 200, 200);
-    padding: 10px;
-}
-
-.postWrite:focus {
-    border-color:#5f00ff;
-}
-
-.btnShare {
-    background: #ffb624;
-    color: #ffffff;
-    width: 20%;
-    height: 140%;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    box-shadow: 1px 1px 1px grey;
-}
+/* Contenedor generales de cada post */
 .containerShowPost{
     width: 100%;
     display:flex;
@@ -82,92 +95,78 @@
     justify-content: center;
     align-items: center;
 }
-
+/* Post generados */
 .containerPost-Each{
-    width: 80%;
     display: grid;
+    font-family: "Telex", sans-serif;
+    border-radius: 15px;
+    width: 80%;
     gap: 4%;
     background: white;
-    border-radius: 20px;
-    font-family: "Telex", sans-serif;
     padding: 3%;
+    border: solid 1px rgb(201, 200, 200);
     box-shadow: 1px 1px 1px grey;
     position: relative;
-}
-
-.btnLogOut{
-    margin-top:2%;
-    background: #5f00ff;
-    color: #ffffff;
-    width: 20%;
-    height: 50%;
-    border-radius:  8px  0px  0px 8px;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    box-shadow: 1px 1px 1px grey;
-}
-
-@media only screen and (min-width: 769px){
-    .home {
-        margin: 0px;
-        display: grid;
-        grid-template-columns: 20% 80%;
-        grid-template-rows: 10% 90%;
-        grid-template-areas: "navWall head" "navWall wall";
-        background-color: #F1EFEF;
-    }
-    .headWall{
-        grid-area: head;
-        display: flex;
-        flex-direction:row;
-        justify-content: space-between;
-    }
-    .navWall{
-        grid-area: navWall;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-evenly;
-        background: linear-gradient(180deg, #5f00ff 0%, #4cb7eb 100%);
-        border-radius: 0px 20px 20px 0px;
-    }
-    .logoWall{
-        width: 80%;
-    }
-    .containerWall{
-        grid-area: wall;
-    }
-    #nameHomeTagH3{
-        margin: 3%;
-        font-family: "Telex", sans-serif;
-        font-size: 0.9em;
-    }
-}
-
-.poster {
-    /* width: 90%;
-    height: 50%; */
-    width: 80%;
-    display: grid;
-    gap: 4%;
-    background: white;
-    border-radius: 20px;
-    font-family: "Telex", sans-serif;
-    padding: 3%;
-    box-shadow: 1px 1px 1px grey;
-    position: relative;
-    margin: 5%;
 }
 
 .postWrite1{
     width: 100%;
-    height: 70%;
-    border: 0;
+    height: 100%;
     outline: none;
     text-decoration: none;
     border: solid 1px rgb(255, 250, 250);
-    /* border: solid 1px rgb(201, 200, 200); */
     padding: 5px;
     cursor: pointer;
+}
+
+.userPost {
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.dataPost {
+    color: rgb(201, 200, 200);
+    font-size: 0.8em;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+}
+
+.btnPosts {
+    width: 100%;
+    padding: 1%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.likespost {
+    border-style: solid;
+    border-width: 1px 0px 0px 0px;
+    border-color: rgb(182, 182, 182);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 1%;
+}
+
+.likes {
+    background: transparent;
+    border: none;
+    font-size: 0.8em;
+    outline: none;
+    color: #ffb624;
+}
+
+.btnPostED {
+    background: transparent;
+    border: none;
+    font-size: 0.8em;
+    outline: none;
+    color: #5f00ff;
+}
+
+@media only screen and (min-width: 769px){
+    .navMenu {
+        gap: 6em;
+    }
 }

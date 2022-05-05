@@ -10,3 +10,7 @@ export {
   sendEmailVerification,
   signOut,
 } from 'https://www.gstatic.com/firebasejs/9.6.11/firebase-auth.js';
+export {
+  getFirestore, collection, addDoc, Timestamp, onSnapshot, deleteDoc, doc, getDoc, updateDoc,
+  orderBy, query, arrayUnion, arrayRemove,
+} from 'https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore.js';

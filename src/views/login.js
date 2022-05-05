@@ -22,7 +22,6 @@ export const login = () => {
           <p class="messageLogInError"></p>
           <p class="messageHaveAnAccount">Already have an account?</p>
           <button class="btnSign" id="signUpHere">Sign Up here.</button>
-          <!-- <h3 id="login"></h3> -->
         </div>
       </div>
     </div>
