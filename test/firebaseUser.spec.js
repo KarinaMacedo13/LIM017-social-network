@@ -1,5 +1,5 @@
 /* eslint-disable jest/prefer-to-have-length */
-// importamos la funcion que vamos a testear
+// importamos la funcion y las promesas que vamos a testear
 import {
   registerFirebase,
   registerAndLoginGoogle,

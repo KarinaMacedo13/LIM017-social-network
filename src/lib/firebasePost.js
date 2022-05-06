@@ -2,10 +2,10 @@
 /* eslint-disable import/no-unresolved */
 import {
   getFirestore, collection, addDoc, Timestamp, onSnapshot, deleteDoc, doc, getDoc, updateDoc,
-  orderBy, query, arrayUnion, arrayRemove,
+  orderBy, query, arrayUnion, arrayRemove, getCurrentUser,
 } from './firebaseLibraries.js';
 import { app } from './firebaseConfig.js';
-import { getCurrentUser } from './firebaseUser.js';
+// import { getCurrentUser } from './firebaseUser.js';
 
 const dataBase = getFirestore(app);
 
@@ -17,6 +17,7 @@ export const savePost = (description) => {
     description,
     date: new Date(),
     dateTime: Timestamp.fromDate(new Date()),
+    photo: getCurrentUser().photoURL,
     likesArray: [],
     likesCount: 0,
   });

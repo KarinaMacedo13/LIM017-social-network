@@ -63,9 +63,9 @@
 
 .headWall h3 {
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.3em;
     font-family: "Telex", sans-serif;
-    margin-left: 10%;
+    margin-left: 3%;
 }
 
 .containerWall{
@@ -101,7 +101,6 @@
     font-family: "Telex", sans-serif;
     border-radius: 15px;
     width: 80%;
-    gap: 4%;
     background: white;
     padding: 3%;
     border: solid 1px rgb(201, 200, 200);
@@ -131,9 +130,17 @@
     margin-bottom: 0.5%;
 }
 
+figure {
+    text-align: center;
+}
+
+.postImg {
+    width: 100%;
+    height: auto;
+}
+
 .btnPosts {
     width: 100%;
-    padding: 1%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -152,21 +159,35 @@
 .likes {
     background: transparent;
     border: none;
-    font-size: 0.8em;
+    font-size: 1em;
     outline: none;
     color: #ffb624;
+    cursor: pointer;
 }
 
 .btnPostED {
     background: transparent;
     border: none;
-    font-size: 0.8em;
+    font-size: 1em;
     outline: none;
     color: #5f00ff;
+    cursor: pointer;
 }
 
 @media only screen and (min-width: 769px){
     .navMenu {
         gap: 6em;
+    }
+
+    .postWrite1{
+        height: 50px;   
+    }
+
+    .userPost {
+        font-size: 1.2em;
+    }
+
+    .postImg {
+        width: 80%;
     }
 }

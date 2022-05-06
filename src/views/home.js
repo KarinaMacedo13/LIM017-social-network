@@ -16,7 +16,7 @@ export const home = () => {
       <div class="containerWall">
         <div class="containerPost">
           <div class="postHead" id="postForm1">
-            <p class="titlePost"> Create Post </p>
+            <p class="titlePost"> Public Post </p>
             <button id="btnPost" class="postWrite1" name="textarea" rows="20" cols="50" data-toggle="modal" data-target="#myModal">Write something here
             </button>
           </div>
@@ -29,7 +29,7 @@ export const home = () => {
           <div class="modalContentPostEdit">
           <span class="close">&times;</span>
           <form class="containerPost" id="postForm">
-            <p class="titlePost">Create Post</p>
+            <p class="titlePost"> Public Post</p>
             <textarea id="posWrite" class="postWrite" name="textarea" rows="10" cols="50" placeholder="Write something here"></textarea>
             <button class="btnShare" id="btnShare"> Share </button>
           </form>
