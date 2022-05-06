@@ -103,6 +103,7 @@
   float: right;
   font-size: 1em;
   font-weight: bold;
+  height: min-content;
 }
 
 .close:hover,
@@ -139,7 +140,15 @@
     width: 60%;
     height: 50%;
   }
+  .modalContentPostEdit {
+    height: 0%;
+  }
   .btnModal {
     font-size: 1em;
   }
+  .close{
+    font-size: 1.8em;
+    height: min-content;
+  }
 }
+

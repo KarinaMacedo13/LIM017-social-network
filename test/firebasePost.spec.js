@@ -16,7 +16,7 @@ import {
 } from '../src/lib/firebaseLibraries';
 
 jest.mock('../src/lib/firebaseLibraries.js');
-jest.mock('../src/lib/firebaseUser.js');
+// jest.mock('../src/lib/firebaseUser.js');
 
 describe('savePost', () => {
   it('Debería llamar la función al menos una vez con el argumento(description)', () => {

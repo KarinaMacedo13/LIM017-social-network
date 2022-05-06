@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-use-before-define */
-import { singOutFirebase, getCurrentUser } from '../lib/firebaseUser.js';
+import { singOutFirebase } from '../lib/firebaseUser.js';
+import { getCurrentUser } from '../lib/firebaseLibraries.js';
 import {
   savePost,
   onGetPost,
@@ -54,8 +55,8 @@ const getPosts = async () => {
       <p class="userPost"> ${postWrite.user} </p>
       ${postWrite.uid === userLogIn
     ? `<div class="btnED">
-          <button class="btnPostED btnDelete" data-id="${postWrite.id}"> <i class="fa-solid fa-trash"></i> Delete | </button>
-          <button class="btnPostED btnEdit" data-id="${postWrite.id}"> <i class="fa-solid fa-pen-to-square"></i> Edit </button>
+          <button class="btnPostED btnDelete"> <i class="fa-solid fa-trash" data-id="${postWrite.id}"></i> | </button>
+          <button class="btnPostED btnEdit"> <i class="fa-solid fa-pen-to-square" data-id="${postWrite.id}"></i></button>
         </div>` : ''}
         </div>
       <p class="dataPost"> Publication: ${postWrite.date.toDate().toLocaleDateString('en-US', options)} </p>
@@ -63,8 +64,11 @@ const getPosts = async () => {
       <div>
       <p class="desciption Post"> ${postWrite.description} </p>
       </div>
+      <figure>
+          <img class="postImg" src="./img/Befit.jpeg">
+      </figure>
       <div class="likespost">
-      <button class="likes" data-id='${doc.id}'><i class="fa-solid fa-heart"></i> ${postWrite.likesCount} Likes </button>
+      <button class="likes"> <i class="fa-solid fa-heart" data-id='${doc.id}'></i> ${postWrite.likesCount}</button> <p> </p>
       </div>
       </div>
       </br>
