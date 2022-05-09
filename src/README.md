@@ -132,7 +132,7 @@ En el proyecto se han marcado distintos objetivos de aprendizaje los cuales se d
 - [x] Git: Control de versiones con git (init, clone, add, commit, status, push, pull, remote)**
 - [x] Git: Integración de cambios entre ramas (branch, checkout, fetch, merge, reset, rebase, tag)**
 - [x] GitHub: Creación de cuenta y repos, configuración de llaves SSH**
-- [ ] GitHub: Despliegue con GitHub Pages
+- [x] GitHub: Despliegue con GitHub Pages
 - [x] GitHub: Colaboración en Github (branches | forks | pull requests | code review | tags)**
 - [x] GitHub: Organización en Github (projects | issues | labels | milestones | releases)
 
@@ -141,7 +141,7 @@ En el proyecto se han marcado distintos objetivos de aprendizaje los cuales se d
 - [x] Diseñar la aplicación pensando en y entendiendo al usuario
 - [x] Crear prototipos para obtener feedback e iterar
 - [x] Aplicar los principios de diseño visual (contraste, alineación, jerarquía)**
-- [ ] Planear y ejecutar tests de usabilidad
+- [x] Planear y ejecutar tests de usabilidad.
 
 ### Firebase
 
