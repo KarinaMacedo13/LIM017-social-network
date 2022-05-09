@@ -41,10 +41,18 @@ historias de usuario
 
 ### HISTORIAS DE USUARIO
 Una vez definidas las necesidades y/o problemas se crearon historias de usuarios para poder solucionarlas.
+  ### Primera historia:
+
+  [![Primera-historia.png](https://i.postimg.cc/xTQvvYX8/Primera-historia.png)](https://postimg.cc/py05vwYM)
+  ### Segunda historia:
+
+  [![Segunda-historia.png](https://i.postimg.cc/9XLmpYM9/Segunda-historia.png)](https://postimg.cc/3WDQrp2r)
+
+  ### Tercera historia:
+
+  [![Tercera-historia.png](https://i.postimg.cc/pVcv8VGY/Tercera-historia.png)](https://postimg.cc/6TZFxKNy)
 
    ### INVESTIGACIÓN
-<!-- Historias de Usuario -->
-[Project-3.jpg](https://postimg.cc/jwbxHxdn)
 
 <!-- Pagina Web DeskTop -->
 <a href="https://postimages.org/" target="_blank"><img src="https://i.postimg.cc/1RCq2xbJ/1-1.png" alt="1-1"/></a><br/><br/>

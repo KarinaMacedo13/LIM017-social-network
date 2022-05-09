@@ -34,25 +34,19 @@ export const loginFirebase = (email, password) => {
   return loginBefit;
 };
 
-// OBTENER EL USUARIO ACTUAL con sus propiedades
-// export const getCurrentUser = () => {
-//   const user = auth.currentUser;
-//   return user;
-// };
-
-// ACTUALIZA EL PERFIL DEL USUARIO
+// ACTUALIZA EL PERFIL DEL USUARIO-------------------------------------------
 export const updaterUserProfile = (name) => {
   return updateProfile(auth.currentUser, {
     displayName: name,
   });
 };
 
-// VERIFICAR REGISTRO ENVIANDO UN CORREO AL EMAIL
+// VERIFICAR REGISTRO ENVIANDO UN CORREO AL EMAIL---------------------------
 export const emailVerification = () => {
   return sendEmailVerification(auth.currentUser).then(() => {});
 };
 
-// SIGN OUT - CERRAR SESIÓN
+// SIGN OUT - CERRAR SESIÓN-------------------------------------------------
 export const singOutFirebase = () => {
   return signOut(auth).then(() => {});
 };

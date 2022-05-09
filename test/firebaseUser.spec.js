@@ -72,9 +72,3 @@ describe('singOut', () => {
     expect(singOutFirebase()).toEqual(signOut());
   });
 });
-
-// describe('getCurrentUser', () => {
-//   it('Debería retornar un objeto', () => {
-//     expect(getCurrentUser()).toEqual();
-//   });
-// });
